@@ -30,7 +30,7 @@
     </style>
 </head>
 <style>
-    .main_wrapper {
+     .main_wrapper {
         background: transparent !important;
     }
 
@@ -39,6 +39,86 @@
         width: 50px;
         height: 50px;
         vertical-align: middle;
+    }
+
+    .section-title {
+        margin-bottom: 2rem;
+        font-size: 2rem;
+        font-weight: bold;
+        position: relative;
+        display: inline-block;
+    }
+    .section-title::after {
+        content: '';
+        position: absolute;
+        width: 50%;
+        height: 2px;
+        background-color: #28a745;
+        bottom: -5px;
+        left: 25%;
+        transition: width 0.3s ease;
+    }
+    .section-title:hover::after {
+        width: 100%;
+        left: 0;
+    }
+    .feature-card {
+        padding: 15px ;
+        background-color: #f7f7f7;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin-bottom: 20px;
+        height: 88%;
+    }
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .feature-card img {
+        width: 100px;
+        margin-bottom: 15px;
+        transition: transform 0.3s ease;
+    }
+    .feature-card:hover img {
+        transform: scale(1.1);
+    }
+    .feature-card h4 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    .feature-card p {
+        font-size: 1rem;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 1200px) {
+        .col-responsive {
+            flex: 0 0 20%;
+            max-width: 20%;
+        }
+    }
+    @media (max-width: 992px) {
+        .col-responsive {
+            flex: 0 0 25%;
+            max-width: 25%;
+        }
+    }
+    @media (max-width: 768px) {
+        .col-responsive {
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+        }
+    }
+    @media (max-width: 576px) {
+        .col-responsive {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+        .section-title {
+            font-size: 1.5rem;
+        }
     }
 </style>
 
@@ -249,85 +329,43 @@
             </div>
         </section>
         <!-- Entry Button Section -->
-        <div class="entry-wrapper">
-            <div class="dam-entry-section">
-                <div class="container">
-                    <div class="row mt-3">
-                        <div class="col-sm-6 col-md-3 mob-col">
-                            <a href="https://sadai.gov.bd/krishoker-bazar">
-                                <div class="dam-entry-button">
-                                    <div class="icon-box">
-                                        <img src="assets/images/bazar-logo-image/1665463805snupX.png" width="60" alt="bazar logo">
-                                    </div>
-                                    <p>আজকের বাজার দর</p>
-                                </div>
-                                <div class="dam-bazar-dropdown">
-                                    <ul>
-                                        <li>
-                                            <p> অনলাইন মাধ্যমে কৃষক ও ব্যবসায়ী পণ্য বিক্রির জন্য বিজ্ঞাপন দিতে পারবেন।যে কোন কৃষি পন্য ক্রয়-বিক্রয় সংক্রান্ত তথ্য বিনামূল্যে ওয়েব সাইটে সংযোজন করা যাবে। পন্য সংযুক্ত করতে চাইলে আপনাকে এখানে সদস্য হতে হবে।
-                                                এর জন্য কোন ফি দিতে হবে না। </p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </a>
+        <section id="categories" class="py-5">
+            <div class="container-fluid">
+                <h2 class="text-center section-title mb-4">বাজার ডিরেক্টরি</h2>
+                <div class="row justify-content-center">
+                    <div class="col-2 col-responsive">
+                        <div class="feature-card">
+                            <img src="assets/images/bazar-logo-image/1665463805snupX.png" alt="Feature 1" class="card-img">
+                            <h4 class="mt-2">আজকের বাজার দর</h4>
                         </div>
-                        <div class="col-sm-6 col-md-3 mob-col">
-                            <a href="https://sadai.gov.bd/wholesale">
-                                <div class="dam-entry-button">
-                                    <div class="icon-box">
-                                        <img src="assets/images/bazar-logo-image/1663940128HxJ2K.png" width="60" alt="bazar logo">
-                                    </div>
-                                    <p>সপ্তাহের বাজার দর </p>
-                                </div>
-                                <div class="dam-bazar-dropdown">
-                                    <ul>
-                                        <li>
-                                            <p> কোনও মধ্যস্থতাকারী ছাড়াই আপনার কৃষি পণ্য অনলাইনে বিক্রয় করুন। যে কোন কৃষি পন্য ক্রয়-বিক্রয় সংক্রান্ত তথ্য বিনামূল্যে ওয়েব সাইটে সংযোজন করা যাবে। পন্য সংযুক্ত করতে চাইলে আপনাকে এখানে সদস্য হতে হবে। এর জন্য
-                                                কোন ফি দিতে হবে না। </p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </a>
+                    </div>
+                    <div class="col-2 col-responsive">
+                        <div class="feature-card">
+                            <img src="assets/images/bazar-logo-image/1663940128HxJ2K.png" alt="Feature 2" class="card-img">
+                            <h4 class="mt-2">সপ্তাহের বাজার দর</h4>
                         </div>
-                        <div class="col-sm-6 col-md-3 mob-col">
-                            <a href="https://sadai.gov.bd/retail">
-                                <div class="dam-entry-button">
-                                    <div class="icon-box">
-                                        <img src="assets/images/bazar-logo-image/16639401416fnv7.png" width="60" alt="bazar logo">
-                                    </div>
-                                    <p>সর্বোচ্চ ও সর্বনিম্ন দরের আঞ্চলিক গ্রাফ</p>
-                                </div>
-                                <div class="dam-bazar-dropdown">
-                                    <ul>
-                                        <li>
-                                            <p> যে কোন কৃষি পন্য ক্রয়-বিক্রয় সংক্রান্ত তথ্য বিনামূল্যে ওয়েব সাইটে সংযোজন করা যাবে। পন্য সংযুক্ত করতে চাইলে আপনাকে এখানে সদস্য হতে হবে। এর জন্য কোন ফি দিতে হবে না। </p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </a>
+                    </div>
+                    <div class="col-2 col-responsive">
+                        <div class="feature-card">
+                            <img src="assets/images/bazar-logo-image/16639401416fnv7.png" alt="Feature 3" class="card-img">
+                            <h4 class="mt-2">সর্বোচ্চ ও সর্বনিম্ন দরের আঞ্চলিক গ্রাফ</h4>
                         </div>
-                        <div class="col-sm-6 col-md-3 mob-col">
-                            <a href="https://sadai.gov.bd/nari-corner">
-                                <div class="dam-entry-button">
-                                    <div class="icon-box">
-                                        <img src="assets/images/bazar-logo-image/1663940153rAwrE.png" width="60" alt="bazar logo">
-                                    </div>
-                                    <p>কৃষক ও ব্যবসায়ী প্রফিট লিস্ট</p>
-                                </div>
-                                <div class="dam-bazar-dropdown">
-                                    <ul>
-                                        <li>
-                                            <p> নারী কৃষিপণ্য দিয়ে ঘরে বসে আচার, ঘিসহ অনেক পণ্য তৈরি করে। তবে নানা কারণে তারা তৈরিকৃত পণ্য বাজারে আনতে পারেন না।যে কোন কৃষি পন্য ক্রয়-বিক্রয় সংক্রান্ত তথ্য বিনামূল্যে ওয়েব সাইটে সংযোজন করা যাবে। পন্য সংযুক্ত
-                                                করতে চাইলে আপনাকে এখানে সদস্য হতে হবে। এর জন্য কোন ফি দিতে হবে না। </p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </a>
+                    </div>
+                    <div class="col-2 col-responsive">
+                        <div class="feature-card">
+                            <img src="assets/images/bazar-logo-image/1663940153rAwrE.png" alt="Feature 4" class="card-img">
+                            <h4 class="mt-2">কৃষক ও ব্যবসায়ী প্রফিট লিস্ট</h4>
+                        </div>
+                    </div>
+                    <div class="col-2 col-responsive">
+                        <div class="feature-card">
+                            <img src="assets/images/bazar-logo-image/1663940128HxJ2K.png" alt="Feature 5" class="card-img">
+                            <h4 class="mt-2">ক্রয় বিক্রয়</h4>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
         <!-- Event Section Start -->
         <!--Event Slider -->
         <section class="main-event-slider dam-home-slider dam-home-event-slider">
