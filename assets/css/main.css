@@ -239,10 +239,8 @@ p {
 .marquee-wrapper {
     padding: 7px 5px 0;
     color: #444;
-    background: var(--gray-light);
-    line-height: 20px;
+    background: #fad0c4;
 }
-
 .marquee-wrapper a {
     font-size: 1rem;
 }
