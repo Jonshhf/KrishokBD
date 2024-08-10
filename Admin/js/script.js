@@ -46,7 +46,7 @@ function saveImage(){
       contentType: false,
       success: function(response) {
         console.log("Image uploaded successfully. URL: " + response);
-        SaveNews(response);
+        SaveProducts(response);
         // You can do something with the URL, like display it to the user
       },
       error: function(xhr, status, error) {
@@ -55,3 +55,75 @@ function saveImage(){
     });
 }
 
+
+function GetProductList()
+{
+  debugger;
+  $.ajax({
+    type: "POST",
+    url: "API/GetProductList.php",
+    data: "",
+    cache: false,
+    success: function(html) {
+       debugger;
+      $('.content-wrapper').html(html);
+       
+    }
+    });
+}
+
+
+var ProductId=0;
+function SaveProducts(image_url)
+{
+    var name=$('#name').val();
+   
+    var is_active=$('#isactive').is(":checked");
+    if(is_active)
+    {
+        is_active=1;
+    }
+    else{
+        is_active=0;
+    }
+    var dataString='name='+name+'&is_active='+is_active+'&id='+ProductId+"&image_url="+image_url;
+
+    $.ajax({
+        type: "POST",
+        url: "API/saveProducts.php",
+        data: dataString,
+        cache: false,
+        success: function(html) {
+           alert(html);
+           NewsId=0;
+           GetProductList();
+           window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+}
+
+
+function Delete(id,table)
+{
+
+  if(confirm('Are You Sure?')){
+
+    dataString='id='+id+'&table='+table;
+
+    $.ajax({
+        type: "POST",
+        url: "API/delete.php",
+        data: dataString,
+        cache: false,
+        success: function(html) {
+           alert(html);
+           if(table=='products'){
+             GetProductList();
+           }
+           else{
+              //GetNews();
+           }
+        }
+    });
+  }
+}
