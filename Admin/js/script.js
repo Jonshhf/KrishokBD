@@ -35,6 +35,12 @@ function checkCredential()
 function saveImage(){
 
     var file = $("#imageInput")[0].files[0];
+    if(file==undefined)
+    {
+      SaveProducts("");
+    }
+    else
+    {
     var formData = new FormData();
     formData.append('image', file);
 
@@ -53,6 +59,7 @@ function saveImage(){
         console.error("Error uploading image: " + error);
       }
     });
+  }
 }
 
 
@@ -95,7 +102,7 @@ function SaveProducts(image_url)
         cache: false,
         success: function(html) {
            alert(html);
-           NewsId=0;
+           ProductId=0;
            GetProductList();
            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -126,4 +133,32 @@ function Delete(id,table)
         }
     });
   }
+}
+
+
+function EditProduct(id,e)
+{
+    ProductId=id;
+    var row = $(e).closest('tr');
+    var name=row.find('.name').text();
+    
+    var is_active=row.find('.is_active').text();
+
+    $('#name').val(name);
+  
+    if(is_active=="Inactive"){
+       $( "#isactive" ).prop( "checked", false );
+    }
+    else
+    {
+        $( "#isactive" ).prop( "checked", true );
+    }
+    
+     $('#category_id option').each(function() {
+        if ($(this).text() === category_name) {
+          $(this).prop('selected', true);
+        }
+     });
+  
+    $("html, body").animate({ scrollTop: $(document).height()-$(window).height() });
 }

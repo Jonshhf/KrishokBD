@@ -23,7 +23,15 @@ $resultc = $conn->query($sqlc);
 
 if ($resultc->num_rows > 0) {
 
-    $sql = "UPDATE products set name='$name',is_active='$is_active',image_url='$image_url' where id=$id ";
+    if($image_url=="")
+    {
+      $sql = "UPDATE products set name='$name',is_active='$is_active' where id=$id ";
+    }
+    else
+    {
+      $sql = "UPDATE products set name='$name',is_active='$is_active',image_url='$image_url' where id=$id ";
+    }
+    
 
 }
 else{
