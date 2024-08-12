@@ -1,4 +1,15 @@
 <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "krisok_db";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
 
 ?>
 <style>
@@ -96,42 +107,30 @@
             <div class="container-fluid">
                 <h2 class="text-center section-title mb-4"> আজকের বাজার দর </h2>
                 <div class="row justify-content-center">
-                    <div class="col-2 col-responsive"  onclick="Getpaddy()">
-                        <div class="feature-card">
-                            <img src="assets/images/cart/rice.png" alt="Feature 1" class="card-img card-height">
-                            <h4 class="mt-2">  ধান </h4>
-                        </div>
+                    
+                <?php
+                $sql = "SELECT * FROM products where is_active=1 order by id asc";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                  // output data of each row
+                  while($row = $result->fetch_assoc()) {
+
+                    $product_id=$row["id"];
+                    $name=$row["name"];
+                    $image_url="Admin/API/".$row["image_url"];
+
+                echo '<div class="col-2 col-responsive" onclick="GetDivisions('.$product_id.')">
+                    <div class="feature-card">
+                        <img src="'.$image_url.'" alt="Feature 1" class="card-img card-height">
+                        <h4 class="mt-2"> '.$name.' </h4>
                     </div>
-                    <div class="col-2 col-responsive" onclick="GetCorn()">
-                        <div class="feature-card">
-                            <img src="assets/images/cart/vurta.png" alt="Feature 2" class="card-img  card-height">
-                            <h4 class="mt-2">ভূট্টা </h4>
-                        </div>
-                    </div>
-                    <div class="col-2 col-responsive" onclick="GetOnion()">
-                        <div class="feature-card">
-                            <img src="assets/images/cart/peyaj.png" alt="Feature 3" class="card-img  card-height">
-                            <h4 class="mt-2">পেঁয়াজ  </h4>
-                        </div>
-                    </div>
-                    <div class="col-2 col-responsive" onclick="GetRosun()">
-                        <div class="feature-card">
-                            <img src="assets/images/cart/rosun.png" alt="Feature 4" class="card-img  card-height">
-                            <h4 class="mt-2">রসুন </h4>
-                        </div>
-                    </div>
-                    <div class="col-2 col-responsive" onclick="GetPotato()">
-                        <div class="feature-card">
-                            <img src="assets/images/cart/alu.png" alt="Feature 5" class="card-img  card-height">
-                            <h4 class="mt-2">আলু </h4>
-                        </div>
-                    </div>
-                    <div class="col-2 col-responsive" onclick="GetGinger()">
-                        <div class="feature-card">
-                            <img src="assets/images/cart/ada.png" alt="Feature 5" class="card-img  card-height">
-                            <h4 class="mt-2">আদা </h4>
-                        </div>
-                    </div>
+                </div>';
+
+                  }
+                }
+?>
+                  
+                  
                 </div>
             </div>
         </section>
@@ -144,6 +143,7 @@
     
 </head>
 <body>
+    <!--
     <div class="container1 mt-5">
         <h1 class="text-center mb-4">রংপুর বিভাগের জেলাসমূহ</h1>
         <div class="row justify-content-center mb-4">
@@ -370,6 +370,7 @@
 
         document.getElementById('productTable').addEventListener('mouseover', highlightExpensiveProducts);
     </script>
+        -->
 </body>
 </html>
 

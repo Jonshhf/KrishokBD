@@ -8,63 +8,37 @@ function GetTodaysMarketPrice()
     });
 }
 
-function Getpaddy()
+
+function GetDivisions(ProductId)
 {
     $("#Content").hide(300);
 
-    $.get("API/GetPaddy.php", function(data, status){
-        $("#Content").html(data);
-        $("#Content").show(300);
+    var dataString='ProductId='+ProductId;
+
+    $.ajax({
+        type: "POST",
+        url: "API/GetDivisions.php",
+        data: dataString,
+        cache: false,
+        success: function(html) {
+          $("#Content").html(html);
+          $("#Content").show(300);
+        }
     });
 }
 
-function GetCorn()
-{ 
-    $("#Content").hide(300);
-
-    $.get("API/GetCorn.php", function(data, status){
-        $("#Content").html(data);
-        $("#Content").show(300);
-    });
-}
-
-
-function GetOnion()
+function GetDistrictWisePrice(divisionId,productId)
 {
-    $("#Content").hide(300);
 
-    $.get("API/GetOnion.php", function(data, status){
-        $("#Content").html(data);
-        $("#Content").show(300);
-    });
-}
+    var dataString='divisionId='+divisionId+"&productId="+productId;
 
-function GetRosun()
-{
-    $("#Content").hide(300);
-
-    $.get("API/GetRosun.php", function(data, status){
-        $("#Content").html(data);
-        $("#Content").show(300);
-    });
-}
-
-function GetPotato()
-{
-    $("#Content").hide(300);
-
-    $.get("API/GetPotato.php", function(data, status){
-        $("#Content").html(data);
-        $("#Content").show(300);
-    });
-}
-
-function GetGinger()
-{
-    $("#Content").hide(300);
-
-    $.get("API/GetGinger.php", function(data, status){
-        $("#Content").html(data);
-        $("#Content").show(300);
+    $.ajax({
+        type: "POST",
+        url: "API/GetDistrictWisePrice.php",
+        data: dataString,
+        cache: false,
+        success: function(html) {
+            $('.modal-body').html(html);
+        }
     });
 }
