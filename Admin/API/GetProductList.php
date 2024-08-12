@@ -91,7 +91,7 @@ if ($result->num_rows > 0) {
 
 
   
-     echo "<tr style='height:300px; '>";
+     echo "<tr style='height:100px; '>";
      echo "<td>".$slno."</td>";
      echo "<td class='name'>".$name."</td>";
      echo "<td class='image_url'><img src='$image_url'  width='100px;'  height='100px;' style='border-radius:0% !important;' ></td>";

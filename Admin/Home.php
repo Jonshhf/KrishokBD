@@ -115,18 +115,18 @@
             </li>
            
             
-           <!-- <li class="nav-item nav-category"><span class="nav-link">News Centre</span></li>
+           <li class="nav-item nav-category"><span class="nav-link">Price Management</span></li>
             <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                <span class="menu-title">News</span>
+                <span class="menu-title">Add Price</span>
                 <i class="icon-doc menu-icon"></i>
               </a>
               <div class="collapse" id="auth">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" onclick="GetNews()" style="cursor:pointer;"> Create News </a></li>
+                  <li class="nav-item"> <a class="nav-link" onclick="GetPrice()" style="cursor:pointer;"> District Wise </a></li>
                 </ul>
               </div>
-            </li> -->
+            </li>
             
           </ul>
         </nav>

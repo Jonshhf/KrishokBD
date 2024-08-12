@@ -65,16 +65,14 @@ function saveImage(){
 
 function GetProductList()
 {
-  debugger;
   $.ajax({
     type: "POST",
     url: "API/GetProductList.php",
     data: "",
     cache: false,
     success: function(html) {
-       debugger;
       $('.content-wrapper').html(html);
-       
+      let table = new DataTable('#productTbl');
     }
     });
 }
@@ -128,7 +126,7 @@ function Delete(id,table)
              GetProductList();
            }
            else{
-              //GetNews();
+              GetPrice();
            }
         }
     });
@@ -161,4 +159,66 @@ function EditProduct(id,e)
      });
   
     $("html, body").animate({ scrollTop: $(document).height()-$(window).height() });
+}
+
+
+function GetPrice()
+{
+  $.ajax({
+    type: "POST",
+    url: "API/GetPrice.php",
+    data: "",
+    cache: false,
+    success: function(html) {
+      $('.content-wrapper').html(html);
+      let table = new DataTable('#priceTbl');
+    }
+  });
+}
+
+
+
+  function get_districts(e) {
+      console.log("Hi");
+      var divisionId = $(e).val();
+      console.log(divisionId);
+      if (divisionId) {
+          $.ajax({
+              url: 'API/get_districts.php',
+              type: 'POST',
+              data: {division_id: divisionId},
+              success: function(data) {
+                  $('#district').html(data);
+              }
+          });
+      } else {
+          $('#district').html('<option value="" selected disabled>Select District</option>');
+      }
+  }
+
+
+var PriceId=0;
+function savePrice()
+{
+    var product_id=$('#product').val();
+    var division_id=$('#division').val();
+    var district_id=$('#district').val();
+    var date=$('#date').val();
+    var price=$('#price').val();
+   
+
+    var dataString='division_id='+division_id+'&district_id='+district_id+'&id='+PriceId+"&date="+date+"&price="+price+"&product_id="+product_id;
+
+    $.ajax({
+        type: "POST",
+        url: "API/savePrice.php",
+        data: dataString,
+        cache: false,
+        success: function(html) {
+           alert(html);
+           PriceId=0;
+           GetPrice();
+           window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
 }
