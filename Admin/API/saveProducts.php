@@ -6,18 +6,7 @@
     $is_active=$_POST['is_active'];
     $image_url=$_POST['image_url'];
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "krisok_db";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-
+include "../../connection.php";
 $sqlc = "SELECT * FROM products where id=$id";
 $resultc = $conn->query($sqlc);
 

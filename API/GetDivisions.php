@@ -1,15 +1,6 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "krisok_db";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+include "../connection.php";
 
 $ProductId = $_POST["ProductId"];
 
@@ -129,6 +120,9 @@ $date = date('d/m/Y', time());
                 <div class="row">
 
                 <?php
+                
+                $conn->set_charset("utf8mb4");
+                
                 $sql = "SELECT * FROM divisions order by id asc";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
@@ -137,6 +131,7 @@ $date = date('d/m/Y', time());
 
                     $divisionId=$row["id"];
                     $name=$row["bn_name"];
+                    $name = mb_convert_encoding($name, 'UTF-8', 'auto');
 
                    echo '<div class="col-6 col-md-3 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="GetDistrictWisePrice('. $divisionId.','.$product_id.')">
                         <button class="btn district-btn">'.$name.'</button>

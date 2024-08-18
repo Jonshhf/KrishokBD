@@ -1,6 +1,11 @@
+ var loader="<center>অনুগ্রহপূর্বক অপেক্ষা করুন . . . <br><img src='images/loader2.gif' height='120px;' width='350px;' style='opacity:0.5;'> </center> ";
+
 function GetTodaysMarketPrice()
 {
-    $("#Content").hide(300);
+   
+    
+     $("html, body").animate({ scrollTop: 0 }, "slow");
+     $("#Content").html(loader);
 
     $.get("API/GetTodaysMarketPrice.php", function(data, status){
         $("#Content").html(data);
@@ -11,7 +16,9 @@ function GetTodaysMarketPrice()
 
 function GetDivisions(ProductId)
 {
-    $("#Content").hide(300);
+   
+     $("html, body").animate({ scrollTop: 0 }, "slow");
+     $("#Content").html(loader);
 
     var dataString='ProductId='+ProductId;
 

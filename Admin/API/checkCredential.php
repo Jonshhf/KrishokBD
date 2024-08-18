@@ -3,17 +3,7 @@
   $usernames=$_POST["username"];
   $passwords=$_POST["password"];
   
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "krisok_db";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+include "../../connection.php";
 
 $sql = "SELECT * FROM users where username='$usernames' and password='$passwords' ";
 //echo $sql;

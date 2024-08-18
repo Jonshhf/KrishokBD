@@ -1,17 +1,8 @@
 
 
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "krisok_db";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+include "../../connection.php";
 
 // Retrieve data from POST request
 $division_id = isset($_POST['division_id']) ? $_POST['division_id'] : '';

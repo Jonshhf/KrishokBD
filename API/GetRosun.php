@@ -1,6 +1,0 @@
-<?php
-
-
-?>
-
-Wait a Second....
