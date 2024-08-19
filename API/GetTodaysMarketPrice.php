@@ -110,7 +110,7 @@ include "../connection.php";
                     $name=$row["name"];
                     $image_url="Admin/API/".$row["image_url"];
 
-                echo '<div class="col-2 col-responsive" onclick="GetDivisions('.$product_id.')">
+                echo '<div class="col-2 col-responsive" onclick="GetTypes('.$product_id.')">
                     <div class="feature-card">
                         <img src="'.$image_url.'" alt="Feature 1" class="card-img card-height">
                         <h4 class="mt-2"> '.$name.' </h4>

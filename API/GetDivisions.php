@@ -3,6 +3,7 @@
 include "../connection.php";
 
 $ProductId = $_POST["ProductId"];
+$ProductTypeId = $_POST["productTypeId"];
 
 $sql = "SELECT * FROM products where id=$ProductId";
 $result = $conn->query($sql);
@@ -16,6 +17,16 @@ if ($result->num_rows > 0) {
   }
 }
 
+$sql = "SELECT * FROM products_type where id=$ProductTypeId";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+
+    $product_type_id=$row["id"];
+    $product_type_name=$row["name"];
+  }
+}
 
 date_default_timezone_set('Asia/Dhaka');
 $date = date('d/m/Y', time());
@@ -114,7 +125,7 @@ $date = date('d/m/Y', time());
     </style>
 
 <div class="container1 mt-5">
-        <h1 class="text-center mb-4"> <?php echo $product_name; ?> এর আজকের বাজার দর  - <?php echo $date; ?> </h1>
+        <h1 class="text-center mb-4"> <?php echo $product_name." - ".$product_type_name; ?> এর আজকের বাজার দর  - <?php echo $date; ?> </h1>
         <div class="row justify-content-center mb-4">
             <div class="col-md-8 btn-container">
                 <div class="row">
@@ -133,7 +144,7 @@ $date = date('d/m/Y', time());
                     $name=$row["bn_name"];
                     $name = mb_convert_encoding($name, 'UTF-8', 'auto');
 
-                   echo '<div class="col-6 col-md-3 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="GetDistrictWisePrice('. $divisionId.','.$product_id.')">
+                   echo '<div class="col-6 col-md-3 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="GetDistrictWisePrice('. $divisionId.','.$product_id.','.$product_type_id.')">
                         <button class="btn district-btn">'.$name.'</button>
                     </div>';
 
@@ -150,7 +161,7 @@ $date = date('d/m/Y', time());
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title fs-5" id="exampleModalLabel"><?php echo $product_name; ?> এর আজকের বাজার দর  - <?php echo $date; ?></h4>
+        <h4 class="modal-title fs-5" id="exampleModalLabel"><?php echo $product_name." - ".$product_type_name; ?> এর আজকের বাজার দর  - <?php echo $date; ?></h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

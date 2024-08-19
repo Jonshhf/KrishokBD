@@ -53,6 +53,7 @@ include "../../connection.php";
                         <tr>
                           <th> # </th>
                           <th> Product </th>
+                          <th> Type </th>
                           <th> Division </th>
                           <th> District </th> 
                           <th> Date </th> 
@@ -71,6 +72,7 @@ if ($result->num_rows > 0) {
      $slno++;
      $id=$row["id"];
      $product_id=$row["product_id"];
+     $product_type_id = $row["product_type_id"];
      $division_id=$row["division_id"];
      $district_id=$row["district_id"];
      $date=$row["date"];
@@ -83,6 +85,15 @@ if ($result->num_rows > 0) {
      if ($resultq->num_rows > 0) {
        while($rowq = $resultq->fetch_assoc()) {
          $product_name=$rowq["name"];
+       }
+     }
+
+     $product_type="";
+     $sqlq = "SELECT * FROM products_type where id=$product_type_id";
+     $resultq = $conn->query($sqlq);
+     if ($resultq->num_rows > 0) {
+       while($rowq = $resultq->fetch_assoc()) {
+         $product_type=$rowq["name"];
        }
      }
      
@@ -107,6 +118,7 @@ if ($resultq->num_rows > 0) {
      echo "<tr style='height:50px; '>";
      echo "<td>".$slno."</td>";
      echo "<td class='product_name'>".$product_name."</td>";
+     echo "<td class='product_type'>".$product_type."</td>";
      echo "<td class='division_name'>".$division_name."</td>";
      echo "<td class='district_name'>".$district_name."</td>";
      echo "<td class='date'>".$date."</td>";
@@ -162,7 +174,7 @@ $currentDate = date('Y-m-d');
                     
             <div class="mb-3">
                 <label for="product" class="form-label">Product</label>
-                <select class="form-control" id="product" name="product"  required>
+                <select class="form-control" id="product" onchange="get_product_type(this)" name="product"  required>
                     <option value="" selected disabled>Select Product</option>
                     <?php foreach ($products as $product): ?>
                         <option value="<?= $product['id'] ?>"><?= htmlspecialchars($product['name']) ?></option>
@@ -170,6 +182,13 @@ $currentDate = date('Y-m-d');
                 </select>
             </div>
 
+              <!-- Type Dropdown -->
+              <div class="mb-3">
+                <label for="type" class="form-label">Product Type</label>
+                <select class="form-control" id="type" name="type" required>
+                    <option value="" selected disabled>Select Type</option>
+                </select>
+            </div>
 
  <!-- Division Dropdown -->
  <div class="mb-3">

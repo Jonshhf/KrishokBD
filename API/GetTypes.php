@@ -2,20 +2,23 @@
 
 include "../connection.php";
 
-$divisionId=$_POST["divisionId"];
-$productId=$_POST["productId"];
-$productTypeId=$_POST["productTypeId"];
+$ProductId = $_POST["ProductId"];
 
-$sql = "SELECT * FROM divisions where id=$divisionId";
+$sql = "SELECT * FROM products where id=$ProductId";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
 
-    $division_name=$row["bn_name"];
-  
+    $product_id=$row["id"];
+    $product_name=$row["name"];
+    $product_image_url="Admin/API/".$row["image_url"];
   }
 }
+
+
+date_default_timezone_set('Asia/Dhaka');
+$date = date('d/m/Y', time());
 
 ?>
 
@@ -53,7 +56,7 @@ if ($result->num_rows > 0) {
             background-image: linear-gradient(90deg, #fbc2eb, #a6c1ee);
         }
         .product-table {
-            display: block;
+            display: none;
             margin-top: 30px;
             background-color: white;
             border-radius: 10px;
@@ -110,49 +113,35 @@ if ($result->num_rows > 0) {
         }
     </style>
 
-<div class="row">
-            <div class="col-12">
-                <div id="productTable" class="product-table mb-5">
-                    <h2 id="districtTitle" class="text-center mb-3"></h2>
-                    <div class="table-responsive">
-                   <b> বিভাগ : <?php echo $division_name; ?> </b>
-                   <br>
-                        <table class="table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th>জেলার নাম</th>
-                                    <th>মূল্য (টাকা)</th>
-                                    <th>পরিবর্তন</th>
-                                </tr>
-                            </thead>
-                            <tbody id="productTableBody">
-<?php
-$date = date('Y-m-d');
-$sql = "SELECT a.*,b.bn_name FROM district_wise_price a,districts b where a.district_id=b.id and  a.product_id=$productId and a.product_type_id =$productTypeId and a.division_id=$divisionId and a.date='$date'";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-  // output data of each row
-  while($row = $result->fetch_assoc()) {
+<div class="container1 mt-5">
+        <h1 class="text-center mb-4"> <?php echo $product_name; ?> এর প্রকারভেদ </h1>
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-8 btn-container">
+                <div class="row">
 
-    $district_name=$row["bn_name"];
-    $price=$row["price"];
-    $change="+/- 5";
+                <?php
+                
+                $conn->set_charset("utf8mb4");
+                
+                $sql = "SELECT * FROM products_type where product_id=$product_id order by id asc";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                  // output data of each row
+                  while($row = $result->fetch_assoc()) {
 
-    echo "<tr>";
-    echo "<td>".$district_name."</td>";
-    echo "<td>".$price."</td>";
-    echo "<td>".$change."</td>";
-    echo "</tr>";
+                    $product_type_id=$row["id"];
+                    $name=$row["name"];
+                    $name = mb_convert_encoding($name, 'UTF-8', 'auto');
 
-  }
-}
-    ?>
+                   echo '<div class="col-6 col-md-3 mb-3"  onclick="GetDivisions('. $product_id.','.$product_type_id.')">
+                        <button class="btn district-btn">'.$name.'</button>
+                    </div>';
 
-                            </tbody>
-                        </table>
-                    </div>
+                  }
+                }
+                   ?>
                 </div>
-                <div id="weather-info" class="mb-5"></div>
             </div>
         </div>
-    </div>
+      
+ 

@@ -107,8 +107,8 @@
               </a>
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" onclick="GetProductList()" style="cursor:pointer;" >Product List</a></li>
-
+                  <li class="nav-item"> <a class="nav-link" onclick="GetProductList()" style="cursor:pointer;" >Product</a></li>
+                  <li class="nav-item"> <a class="nav-link" onclick="GetProductType()" style="cursor:pointer;" >Product Type</a></li>
                  <!-- <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Sub Category</a></li> -->
                 </ul>
               </div>

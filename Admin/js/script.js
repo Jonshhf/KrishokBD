@@ -125,6 +125,10 @@ function Delete(id,table)
            if(table=='products'){
              GetProductList();
            }
+           else if(table=='products_type')
+           {
+            GetProductType();
+           }
            else{
               GetPrice();
            }
@@ -179,9 +183,7 @@ function GetPrice()
 
 
   function get_districts(e) {
-      console.log("Hi");
       var divisionId = $(e).val();
-      console.log(divisionId);
       if (divisionId) {
           $.ajax({
               url: 'API/get_districts.php',
@@ -201,13 +203,14 @@ var PriceId=0;
 function savePrice()
 {
     var product_id=$('#product').val();
+    var product_type_id=$('#type').val();
     var division_id=$('#division').val();
     var district_id=$('#district').val();
     var date=$('#date').val();
     var price=$('#price').val();
    
 
-    var dataString='division_id='+division_id+'&district_id='+district_id+'&id='+PriceId+"&date="+date+"&price="+price+"&product_id="+product_id;
+    var dataString='division_id='+division_id+'&district_id='+district_id+'&id='+PriceId+"&date="+date+"&price="+price+"&product_id="+product_id+"&product_type_id="+product_type_id;
 
     $.ajax({
         type: "POST",
@@ -221,4 +224,97 @@ function savePrice()
            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     });
+}
+
+
+
+function GetProductType()
+{
+  $.ajax({
+    type: "POST",
+    url: "API/GetProductType.php",
+    data: "",
+    cache: false,
+    success: function(html) {
+      $('.content-wrapper').html(html);
+      let table = new DataTable('#productTbl');
+    }
+    });
+}
+
+
+
+var ProductTypeId=0;
+function SaveProductsType(image_url)
+{
+    var product_id=$('#product').val();
+    var name=$('#name').val();
+   
+    var is_active=$('#isactive').is(":checked");
+    if(is_active)
+    {
+        is_active=1;
+    }
+    else{
+        is_active=0;
+    }
+    var dataString='name='+name+'&is_active='+is_active+'&id='+ProductTypeId+"&image_url="+image_url+"&product_id="+product_id;
+
+    $.ajax({
+        type: "POST",
+        url: "API/saveProductsType.php",
+        data: dataString,
+        cache: false,
+        success: function(html) {
+           alert(html);
+           ProductTypeId=0;
+           GetProductType();
+           window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+}
+
+
+
+function EditProductType(id,e)
+{
+    ProductTypeId=id;
+    var row = $(e).closest('tr');
+    var name=row.find('.name').text();
+    var product_name=row.find('.product_name').text();
+    var is_active=row.find('.is_active').text();
+
+    $('#name').val(name);
+  
+    if(is_active=="Inactive"){
+       $( "#isactive" ).prop( "checked", false );
+    }
+    else
+    {
+        $( "#isactive" ).prop( "checked", true );
+    }
+    
+     $('#product option').each(function() {
+        if ($(this).text() === product_name) {
+          $(this).prop('selected', true);
+        }
+     });
+  
+    $("html, body").animate({ scrollTop: $(document).height()-$(window).height() });
+}
+
+function get_product_type(e) {
+  var productId = $(e).val();
+  if (productId) {
+      $.ajax({
+          url: 'API/get_product_type.php',
+          type: 'POST',
+          data: {product_id: productId},
+          success: function(data) {
+              $('#type').html(data);
+          }
+      });
+  } else {
+      $('#type').html('<option value="" selected disabled>Select Type</option>');
+  }
 }
