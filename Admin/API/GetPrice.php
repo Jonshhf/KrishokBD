@@ -1,7 +1,7 @@
 
 <?php
 include "../../connection.php";
-
+session_start(); 
 ?>
 
 <style>
@@ -63,7 +63,8 @@ include "../../connection.php";
                       </thead>
                       <tbody>
 <?php
-$sql = "SELECT * FROM district_wise_price order by id desc";
+$user_division_id=$_SESSION["division_id"];
+$sql = "SELECT * FROM district_wise_price where division_id=$user_division_id order by id desc";
 $result = $conn->query($sql);
 $slno=0;
 if ($result->num_rows > 0) {
@@ -144,7 +145,7 @@ if ($resultq->num_rows > 0) {
               
               <?php
 
-$divisionsResult = $conn->query("SELECT id, bn_name FROM divisions");
+$divisionsResult = $conn->query("SELECT id, bn_name FROM divisions where id=$user_division_id");
 $divisions = [];
 if ($divisionsResult->num_rows > 0) {
     while($row = $divisionsResult->fetch_assoc()) {

@@ -63,6 +63,36 @@ function saveImage(){
 }
 
 
+function saveImageProductType(){
+
+  var file = $("#imageInput")[0].files[0];
+  if(file==undefined)
+  {
+    SaveProducts("");
+  }
+  else
+  {
+  var formData = new FormData();
+  formData.append('image', file);
+
+  $.ajax({
+    url: 'API/saveImage.php',
+    type: 'POST',
+    data: formData,
+    processData: false,
+    contentType: false,
+    success: function(response) {
+      console.log("Image uploaded successfully. URL: " + response);
+      SaveProductsType(response);
+      // You can do something with the URL, like display it to the user
+    },
+    error: function(xhr, status, error) {
+      console.error("Error uploading image: " + error);
+    }
+  });
+}
+}
+
 function GetProductList()
 {
   $.ajax({
@@ -128,6 +158,10 @@ function Delete(id,table)
            else if(table=='products_type')
            {
             GetProductType();
+           }
+           else if(table=='users')
+           {
+             GetUsers();
            }
            else{
               GetPrice();
@@ -317,4 +351,117 @@ function get_product_type(e) {
   } else {
       $('#type').html('<option value="" selected disabled>Select Type</option>');
   }
+}
+
+
+
+function GetUsers()
+{
+  $.ajax({
+    type: "POST",
+    url: "API/GetUsers.php",
+    data: "",
+    cache: false,
+    success: function(html) {
+      $('.content-wrapper').html(html);
+      let table = new DataTable('#userTbl');
+    }
+    });
+}
+
+
+
+
+var UserId=0;
+function SaveUsers()
+{
+    var username=$('#username').val();
+    var password=$('#password').val();
+    var division_id=$('#division_id').val();
+   
+    var is_active=$('#isactive').is(":checked");
+    if(is_active)
+    {
+        is_active=1;
+    }
+    else{
+        is_active=0;
+    }
+    var dataString='username='+username+'&is_active='+is_active+'&id='+UserId+"&password="+password+"&division_id="+division_id;
+
+    $.ajax({
+        type: "POST",
+        url: "API/saveUsers.php",
+        data: dataString,
+        cache: false,
+        success: function(html) {
+           alert(html);
+           UserId=0;
+           GetUsers();
+           window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+}
+
+
+function EditUser(id,e)
+{
+    ProductTypeId=id;
+    var row = $(e).closest('tr');
+    var username=row.find('.username').text();
+    var password=row.find('.password').text();
+    var division_name=row.find('.division_name').text();
+    var is_active=row.find('.is_active').text();
+
+    $('#username').val(username);
+    $('#password').val(password);
+  
+    if(is_active=="Inactive"){
+       $( "#isactive" ).prop( "checked", false );
+    }
+    else
+    {
+        $( "#isactive" ).prop( "checked", true );
+    }
+    
+     $('#division_id option').each(function() {
+        if ($(this).text() === division_name) {
+          $(this).prop('selected', true);
+        }
+     });
+  
+    $("html, body").animate({ scrollTop: $(document).height()-$(window).height() });
+}
+
+
+
+function updateProductOrderNo(id,element) {
+  var updatedValue = element.innerText;
+  var sql= "update products set order_no="+updatedValue+" where id="+id;
+  save(sql);
+}
+
+function updateProductTypeOrderNo(id,element) {
+  var updatedValue = element.innerText;
+  var sql= "update products_type set order_no="+updatedValue+" where id="+id;
+  save(sql);
+}
+
+
+function save(sql)
+{
+
+var sql=encodeURI(sql);
+var dataString="sql="+sql;
+
+$.ajax({
+  type: "POST",
+  url: "API/execute.php",
+  data: dataString,
+  cache: false,
+  success: function(html) {
+     //alert(html);
+  }
+});
+
 }

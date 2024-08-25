@@ -5,6 +5,7 @@ include "../connection.php";
 $divisionId=$_POST["divisionId"];
 $productId=$_POST["productId"];
 $productTypeId=$_POST["productTypeId"];
+$ViewType=$_POST["ViewType"];
 
 $sql = "SELECT * FROM divisions where id=$divisionId";
 $result = $conn->query($sql);
@@ -117,6 +118,9 @@ if ($result->num_rows > 0) {
                     <div class="table-responsive">
                    <b> বিভাগ : <?php echo $division_name; ?> </b>
                    <br>
+
+                   <?php if($ViewType=='Daily') { ?>
+
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
@@ -147,6 +151,64 @@ if ($result->num_rows > 0) {
   }
 }
     ?>
+
+    <?php } else if($ViewType=='Weekly') { ?>
+
+
+        <table class="table table-striped table-hover">
+        <thead>
+    <tr>
+        <th>জেলার নাম</th>
+        <?php
+        // Generate date headers for the last 7 days
+        for ($i = 0; $i < 7; $i++) {
+            $date = date('Y-m-d', strtotime("-$i days"));
+            echo "<th>$date</th>";
+        }
+        ?>
+    </tr>
+</thead>
+<tbody id="productTableBody">
+<?php
+$sql = "SELECT a.*, b.bn_name FROM district_wise_price a
+        JOIN districts b ON a.district_id = b.id
+        WHERE a.product_id = $productId 
+        AND a.product_type_id = $productTypeId 
+        AND a.division_id = $divisionId 
+        AND a.date BETWEEN CURDATE() - INTERVAL 6 DAY AND CURDATE()";
+
+$result = $conn->query($sql);
+
+$districtData = [];
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $district_name = $row["bn_name"];
+        $date = $row["date"];
+        $price = $row["price"];
+        
+        // Group the data by district and date
+        $districtData[$district_name][$date] = $price;
+    }
+}
+
+// Display the data
+foreach ($districtData as $district_name => $dates) {
+    echo "<tr>";
+    echo "<td>" . $district_name . "</td>";
+    
+    // Loop through the last 7 days and display prices
+    for ($i = 0; $i < 7; $i++) {
+        $date = date('Y-m-d', strtotime("-$i days"));
+        $price = isset($dates[$date]) ? $dates[$date] : '-';
+        echo "<td>" . $price . "</td>";
+    }
+    
+    echo "</tr>";
+}
+?>
+
+
+    <?php } else {} ?>
 
                             </tbody>
                         </table>

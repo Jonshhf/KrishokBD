@@ -40,9 +40,12 @@ function removeLastPartOfURL() {
     location.reload();
 }
 
-function GetTodaysMarketPrice()
+var ViewType='Daily';
+
+function GetTodaysMarketPrice(type)
 {
-    
+     ViewType = type;
+
      $("html, body").animate({ scrollTop: 0 }, "slow");
      $("#Content").html(loader);
 
@@ -98,7 +101,7 @@ function GetDivisions(ProductId,productTypeId)
 function GetDistrictWisePrice(divisionId,productId,productTypeId)
 {
 
-    var dataString='divisionId='+divisionId+"&productId="+productId+"&productTypeId="+productTypeId;
+    var dataString='divisionId='+divisionId+"&productId="+productId+"&productTypeId="+productTypeId+"&ViewType="+ViewType;
 
     $.ajax({
         type: "POST",

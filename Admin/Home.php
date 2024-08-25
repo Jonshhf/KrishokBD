@@ -1,3 +1,6 @@
+<?php
+  session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -56,11 +59,11 @@
            
             <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown">
               <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                <img class="img-xs rounded-circle ml-2" src="images/faces/face8.jpg" alt="Profile image"> <span class="font-weight-normal"> Rejanur Islam </span></a>
+                <img class="img-xs rounded-circle ml-2" src="images/faces/face8.jpg" alt="Profile image"> <span class="font-weight-normal"> <?php echo $_SESSION["username"]; ?> </span></a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                 <div class="dropdown-header text-center">
                   <img class="img-md rounded-circle" src="images/faces/face8.jpg" alt="Profile image">
-                  <p class="mb-1 mt-3">Rejanur Islam</p>
+                  <p class="mb-1 mt-3"><?php echo $_SESSION["username"]; ?></p>
                   <p class="font-weight-light text-muted mb-0">info@krisokbd.com</p>
         </div>
                 <a class="dropdown-item" href="index.html"><i class="dropdown-item-icon icon-power text-primary"></i>Sign Out</a>
@@ -84,7 +87,7 @@
                   <div class="dot-indicator bg-success"></div>
                 </div>
                 <div class="text-wrapper">
-                  <p class="profile-name">Rejanur Islam </p>
+                  <p class="profile-name"><?php echo $_SESSION["username"]; ?> </p>
                   <p class="designation">Administrator</p>
                 </div>
                
@@ -109,7 +112,9 @@
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" onclick="GetProductList()" style="cursor:pointer;" >Product</a></li>
                   <li class="nav-item"> <a class="nav-link" onclick="GetProductType()" style="cursor:pointer;" >Product Type</a></li>
-                 <!-- <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Sub Category</a></li> -->
+                  <li class="nav-item"> <a class="nav-link" onclick="GetUsers()" style="cursor:pointer;" >Users</a></li>
+
+                  <!-- <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Sub Category</a></li> -->
                 </ul>
               </div>
             </li>

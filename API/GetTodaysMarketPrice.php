@@ -100,7 +100,7 @@ include "../connection.php";
                 <div class="row justify-content-center">
                     
                 <?php
-                $sql = "SELECT * FROM products where is_active=1 order by id asc";
+                $sql = "SELECT * FROM products where is_active=1 order by order_no asc";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                   // output data of each row

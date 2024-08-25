@@ -118,12 +118,11 @@ $date = date('d/m/Y', time());
         <div class="row justify-content-center mb-4">
             <div class="col-md-8 btn-container">
                 <div class="row">
-
                 <?php
                 
                 $conn->set_charset("utf8mb4");
                 
-                $sql = "SELECT * FROM products_type where product_id=$product_id order by id asc";
+                $sql = "SELECT * FROM products_type where product_id=$product_id order by order_no asc";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                   // output data of each row
@@ -133,9 +132,18 @@ $date = date('d/m/Y', time());
                     $name=$row["name"];
                     $name = mb_convert_encoding($name, 'UTF-8', 'auto');
 
-                   echo '<div class="col-6 col-md-3 mb-3"  onclick="GetDivisions('. $product_id.','.$product_type_id.')">
+                   /* echo '<div class="col-6 col-md-3 mb-3"  onclick="GetDivisions('. $product_id.','.$product_type_id.')">
                         <button class="btn district-btn">'.$name.'</button>
-                    </div>';
+                    </div>';  */
+
+                    $image_url="Admin/API/".$row["image_url"];
+
+                echo '<div class="col-2 col-responsive"  onclick="GetDivisions('. $product_id.','.$product_type_id.')">
+                    <div class="feature-card">
+                        <img src="'.$image_url.'" alt="No Image" class="card-img card-height">
+                        <h4 class="mt-2"> '.$name.' </h4>
+                    </div>
+                </div>';
 
                   }
                 }

@@ -54,6 +54,8 @@ include "../../connection.php";
                           <th> # </th>
                           <th> Product </th>
                           <th> Product Type </th>
+                          <th> Image </th>
+                          <th> Order </th>
                           <th> Active Status </th> 
                           <th> Action </th>                  
                         </tr>
@@ -70,6 +72,7 @@ if ($result->num_rows > 0) {
      $id=$row["id"];
      $product_id=$row["product_id"];
      $name=$row["name"];
+     $order_no=$row["order_no"];
 
      $product_name="";
      $sqlq = "SELECT * FROM products where id=$product_id";
@@ -80,7 +83,7 @@ if ($result->num_rows > 0) {
        }
      }
      
-    // $image_url="API/".$row["image_url"];
+    $image_url="API/".$row["image_url"];
     
      $is_active="Inactive";
      if($row["is_active"]==1)
@@ -94,7 +97,8 @@ if ($result->num_rows > 0) {
      echo "<td>".$slno."</td>";
      echo "<td class='product_name'>".$product_name."</td>";
      echo "<td class='name'>".$name."</td>";
-     //echo "<td class='image_url'><img src='$image_url'  width='100px;'  height='100px;' style='border-radius:0% !important;' ></td>";
+     echo "<td class='image_url'><img src='$image_url'  width='100px;'  height='100px;' style='border-radius:0% !important;' ></td>";
+     echo "<td class='order_no' contentEditable onblur='updateProductTypeOrderNo($id,this)'>".$order_no."</td>";
      echo "<td class='is_active'>".$is_active."</td>";
      
      echo "<td> 
@@ -147,19 +151,19 @@ if ($productsResult->num_rows > 0) {
                         <label for="name">Type</label>
                         <input type="text" class="form-control" id="name" placeholder="Name" >
                       </div>
-    <!--
+    
                       <div class="container mt-5">
 <label for="imageInput">Upload News Image</label>
   <input type="file" id="imageInput" class="form-control-file">
   <div id="imagePreview" class="mt-3"></div>
 </div>
--->
+
                       <div class="form-check form-check-success">
                             <label > 
                             Is Active <input style="margin-left:20px;"  id="isactive" type="checkbox" class="form-check-input" checked/>  
                             </label>
                         </div>
-                      <button type="button" onclick="SaveProductsType('')" class="btn btn-primary mr-2">Submit</button>
+                      <button type="button" onclick="saveImageProductType()" class="btn btn-primary mr-2">Submit</button>
                       <button class="btn btn-light">Cancel</button>
                     </form>
                   </div>
