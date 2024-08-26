@@ -113,3 +113,13 @@ function GetDistrictWisePrice(divisionId,productId,productTypeId)
         }
     });
 }
+
+function online_payment()
+{
+    $("#Content").hide(300);
+
+    $.get("API/online_payment.php", function(data, status){
+        $("#Content").html(data);
+        $("#Content").show(300);
+    });
+}
