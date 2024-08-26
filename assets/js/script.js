@@ -42,3 +42,12 @@ function GetDistrictWisePrice(divisionId,productId)
         }
     });
 }
+function package()
+{
+    $("#Content").hide(300);
+
+    $.get("API/package.php", function(data, status){
+        $("#Content").html(data);
+        $("#Content").show(300);
+    });
+}
