@@ -113,11 +113,10 @@ $date = date('d/m/Y', time());
         }
     </style>
 
-<div class="container1 mt-5">
-        <h1 class="text-center mb-4"> <?php echo $product_name; ?> এর প্রকারভেদ </h1>
-        <div class="row justify-content-center mb-4">
-            <div class="col-md-8 btn-container">
-                <div class="row">
+<section id="categories" class="py-5">
+            <div class="container-fluid">
+                <center><h2 class="text-center section-title mb-4"> <?php echo $product_name; ?> এর প্রকারভেদ </h2><center>
+                <div class="row justify-content-center">
                 <?php
                 
                 $conn->set_charset("utf8mb4");
@@ -148,8 +147,8 @@ $date = date('d/m/Y', time());
                   }
                 }
                    ?>
-                </div>
+                   </div>
             </div>
-        </div>
+        </section>
       
  

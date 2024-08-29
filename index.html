@@ -157,8 +157,8 @@
                                     </a>
                                     </li>
                                     <span class="header-login-section">
-                                    <a href="javascript:void(0)" class="login btn-sm animated pulse" onclick="openAuthModal(1)"><i class="fas fa-sign-in-alt"></i> লগইন</a>
-                                    <a href="javascript:void(0)" class="signup btn-sm" onclick="openAuthModal(2)"><i class="fas fa-user-plus"></i> নিবন্ধন করুন</a>
+                                    <a  class="login btn-sm animated pulse" onclick="login()"><i class="fas fa-sign-in-alt"></i> লগইন</a>
+                                    <a  class="signup btn-sm" onclick="registration()"><i class="fas fa-user-plus"></i> নিবন্ধন করুন</a>
                                 </span>
                                     <!-- <li class="header-cart" >
                                     <a href="#" onclick="OpenCart()" title="Cart">
@@ -447,7 +447,7 @@
                     <h5 class="mb-3 mob-footer-title font-weight-bold">গুরুত্বপূর্ণ লিংক সমূহ</h5>
                     <ul class="dam-contact-info">
 
-                        <li><a href="#"><i class="far fa-dot-circle"></i> নীতিমালা</a></li>
+                        <li><a href="assets/document/mv.pdf" target="_blank"><i class="far fa-dot-circle"></i> নীতিমালা</a></li>
                         <li><a href="#"><i class="far fa-dot-circle"></i> সচরাচর জিজ্ঞাস্য</a></li>
                     </ul>
                 </div>
@@ -501,146 +501,11 @@
     <div class="modal fade" id="authModal" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content bg-transparent border-0">
-                <div class="modal-body">
-                    <div class="login-wrapper border p-3">
-                        <div id="login_sec">
-                            <div class="dam-login-title">
-                                <h3 class="display-5 font-weight-bold">লগইন</h3>
-                                <p class="text-center pb-2">লগইন করার জন্য ফরমটি পূরণ করুন</p>
-                            </div>
-                            <form id="log_in" class="login-form">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">ইমেল/ফোন নম্বর <span class="text-danger">*</span></label>
-                                    <input type="text" name="email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">পাসওয়ার্ড <span class="text-danger">*</span></label>
-                                    <div class="input-wrapper">
-                                        <input type="password" name="password" class="form-control form-control-sm " id="InputPassword">
-                                        <div class="btn pw-show-hide" onclick="showPw()">
-                                            <i class="text-success fas fa-eye" id="Show"></i>
-                                            <i class="text-danger fas fa-eye-slash" style="display: none;" id="Hide"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <input name="hit" value="1" type="hidden" class="form-control form-control-sm " id="hit">
-                                <div class="form-group" id="capchaShow" style="display: none">
-                                    <label for="reCapcha">রি ক্যাপচা <span class="text-danger">*</span></label>
-                                    <div class="input-wrapper">
-                                        <div class="g-recaptcha" data-sitekey="6LezxScmAAAAAFd6PmL_E9kpDNW0t7yu_n1Bg58a"></div>
-                                    </div>
-                                    <br/>
-                                </div>
-                                <div class="form-group d-md-flex pt-1 mb-0">
-                                    <div class="w-50 text-left">
-                                        <label class="checkbox-wrap">
-                                    <p>মনে রাখুন</p>
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                    </div>
-                                    <div class="w-50 mob-w-100 mob-forgot-pass text-md-right">
-                                        <a id="resetOpen" class="text-dark"><i class="fas fa-lock" aria-hidden="true"></i> পাসওয়ার্ড ভুলে গেছেন</a>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-success btn-sm dam-login-btn load">লগইন করুন</button>
-                            </form>
-                            <div class="mt-3 text-center">
-                                <a href="javascript:void(0)" class="text-dark" id="regOpen">একটি অ্যাকাউন্ট তৈরি করুন</a>
-                            </div>
-                        </div>
-                        <div id="reg_sec" class="d-none">
-                            <div class="dam-login-title">
-                                <h3 class="display-5 font-weight-bold">নিবন্ধন করুন</h3>
-                                <!-- <p class="text-center">লগইন করার জন্য আপনার ইমেল/ফোন নম্বর এবং পাসওয়ার্ড লিখুন</p> -->
-                            </div>
-                            <form id="siteRegisterForm" class="mt-4" action="https://sadai.gov.bd/register-user" method="post" enctype="multipart/form-data">
-                                <input type="hidden" name="_token" value="vInpwhT7RLeMSdzcQTJpDmEsvpTJlFzHjADXT1LR">
-                                <div class="input-group mb-3 has-validation" id="phone_no_div">
-                                    <input onkeyup="checkNumber()" type="text" name="mobile" class="form-control inpNumValOut w-100" id="mobile" placeholder="ফোন নম্বর" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                    <div id="mobileError" class="validation-errors invalid-feedback-custom"></div>
-                                    <span class="text-danger small err-msg2" id="is_valid_number"></span>
-                                    <button class="btn btn-success mt-2 w-100 load" type="button" id="send_otp_btn" disabled>OTP পাঠান</button>
-
-                                </div>
-
-
-                                <div class="input-group mb-3 has-validation d-none" id="otp_number_div">
-                                    <input type="text" class="form-control inpNumValOut w-100" name="otp_number" class="form-control inpNumValOut" id="otp_number" placeholder="OTP কোড" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                    <div id="otp_numberError" class="validation-errors small invalid-feedback-custom text-danger"></div>
-                                    <div class="btn-group w-100">
-                                        <button class="btn btn-warning mt-2" type="button" id="otp_verify_change_phone_btn">নম্বর পরিবর্তন করুন</button>
-                                        <button class="btn btn-success mt-2 load" type="button" id="otp_verify_btn">যাচাই করুন</button>
-                                    </div>
-                                </div>
-
-
-
-                                <div id="register_details_div" class="d-none">
-                                    <div class="input-group mb-3 has-validation" id="password_div">
-                                        <label class="mb-1" for="password">পাসওয়ার্ড <span class="text-danger">*</span></label>
-                                        <input type="password" name="password" class="w-100 form-control " id="password" placeholder="পাসওয়ার্ড" aria-label="পাসওয়ার্ড" aria-describedby="basic-addon2">
-                                        <div id="passwordError" class="validation-errors invalid-feedback-custom"></div>
-                                    </div>
-
-                                    <div class="input-group mb-3 has-validation" id="password_confirmation_div">
-                                        <label class="mb-1" for="inputGroupSelect01">কনফার্ম পাসওয়ার্ড <span class="text-danger">*</span></label>
-                                        <input type="password" name="password_confirmation" class=" w-100 form-control" id="password_confirmation" placeholder="কনফার্ম পাসওয়ার্ড" aria-label="কনফার্ম পাসওয়ার্ড" aria-describedby="basic-addon2">
-                                        <div id="password_confirmationError" class="validation-errors invalid-feedback-custom"></div>
-                                    </div>
-
-                                    <div class="input-group mb-3 has-validation" id="email_div">
-                                        <label class="mb-1" for="inputGroupSelect01">ইমেইল <span class="text-danger">*</span></label>
-                                        <input autocomplete="off" type="email" name="email" class="w-100 form-control" id="email" placeholder="ইমেইল" aria-label="ইমেইল" aria-describedby="basic-addon2">
-                                        <div id="emailError" class="validation-errors invalid-feedback-custom"></div>
-                                    </div>
-
-
-                                    <div class="input-group mb-3 has-validation" id="role_type_div">
-                                        <label class="mb-1" for="inputGroupSelect01">রেজিস্ট্রেশনের ধরন <span class="text-danger">*</span></label>
-                                        <select class="w-100 form-control" name="role_type" id="role_type">
-                                        <option selected="" disabled="">নির্বাচন করুন</option>
-                                                                                    <option value="4" >কৃষক</option>
-                                                                                    <option value="5" >ভোক্তা</option>
-                                                                                    <option value="6" >কৃষি ব্যবসায়ী</option>
-                                                                                    <option value="7" >ক্ষুদ্র উদ্যোক্তা</option>
-                                                                                    <option value="3" >ড্যাম অফিসিয়াল</option>
-                                                                            </select>
-                                        <div id="role_typeError" class="validation-errors invalid-feedback-custom"></div>
-                                    </div>
-
-                                    <div class="form-group d-flex align-items-center mt-4">
-                                        <button type="submit" id="submit_reg_data" class="btn btn-success rounded submit load w-100">সাইন আপ</button>
-                                    </div>
-                                </div>
-
-                            </form>
-                        </div>
-                        <div id="reset_sec" class="d-none">
-                            <div class="dam-login-title">
-                                <h3 class="display-5 font-weight-bold">পাসওয়ার্ড রিসেট করুন</h3>
-                                <!-- <p class="text-center">লগইন করার জন্য আপনার ইমেল/ফোন নম্বর এবং পাসওয়ার্ড লিখুন</p> -->
-                            </div>
-                            <form class=" mt-4" id="user_forget">
-                                <input type="hidden" name="_token" value="vInpwhT7RLeMSdzcQTJpDmEsvpTJlFzHjADXT1LR">
-                                <div class="mb-3">
-                                    <label class="form-label" for="email">ইমেইল/ফোন নম্বর <span class="text-danger">*</span></label>
-                                    <input type="text" name="email" class="form-control" id="email" placeholder="ইমেইল/ফোন নম্বর প্রদান করুন" required>
-                                </div>
-
-                                <div class="row  mb-0">
-                                    <div class="col-12 text-end">
-                                        <button class="btn btn-primary w-md waves-effect waves-light load" type="submit">রিসেট লিঙ্ক পাঠান</button>
-                                    </div>
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script>
         function showPw() {

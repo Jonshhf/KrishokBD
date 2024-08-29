@@ -1,5 +1,5 @@
- var loader="<center>অনুগ্রহপূর্বক অপেক্ষা করুন . . . <br><img src='images/loader2.gif' height='120px;' width='350px;' style='opacity:0.5;'> </center> ";
- var base_url = "krisokBD/KrishokBD";
+ var loader="<center>অনুগ্রহপূর্বক অপেক্ষা করুন . . . <br><img src='assets/images/loader2.gif' height='250px;' width='350px;' style='opacity:0.7;'> </center> ";
+ var base_url = "KrisokBD_New/KrishokBD";
  var PageContent = {};
  
  function navigate(page,data)
@@ -48,12 +48,17 @@ function GetTodaysMarketPrice(type)
 
      $("html, body").animate({ scrollTop: 0 }, "slow");
      $("#Content").html(loader);
-
+    
     $.get("API/GetTodaysMarketPrice.php", function(data, status){
         $("#Content").html(data);
+        if(type=='Weekly')
+        {
+            $('#TypeHeading').text('সপ্তাহের বাজার দর');
+        }
         $("#Content").show(300);
         navigate('Products',data);
     });
+    
 }
 
 function GetTypes(ProductId)
@@ -119,6 +124,24 @@ function online_payment()
     $("#Content").hide(300);
 
     $.get("API/online_payment.php", function(data, status){
+        $("#Content").html(data);
+        $("#Content").show(300);
+    });
+}
+function registration()
+{
+    $("#Content").hide(300);
+
+    $.get("API/registration.php", function(data, status){
+        $("#Content").html(data);
+        $("#Content").show(300);
+    });
+}
+function login()
+{
+    $("#Content").hide(300);
+
+    $.get("API/login.php", function(data, status){
         $("#Content").html(data);
         $("#Content").show(300);
     });

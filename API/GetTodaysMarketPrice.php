@@ -96,7 +96,7 @@ include "../connection.php";
 <!-- Entry Button Section -->
 <section id="categories" class="py-5">
             <div class="container-fluid">
-                <h2 class="text-center section-title mb-4"> আজকের বাজার দর </h2>
+                <h2 class="text-center section-title mb-4" id="TypeHeading"> আজকের বাজার দর </h2>
                 <div class="row justify-content-center">
                     
                 <?php
