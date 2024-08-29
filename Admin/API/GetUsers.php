@@ -56,6 +56,7 @@ include "../../connection.php";
                           <th> Password </th>
                           <th> Division </th>
                           <th> Active Status </th> 
+                          <th> Is Super Admin </th> 
                           <th> Action </th>                  
                         </tr>
                       </thead>
@@ -84,12 +85,20 @@ if ($result->num_rows > 0) {
      }
      
     // $image_url="API/".$row["image_url"];
-    
+  //echo $row["is_super_admin"];
+    $is_super_admin="No";
+    if($row["is_super_admin"]==1)
+    {
+       $is_super_admin="Yes";
+    }
+
+
      $is_active="Inactive";
      if($row["is_active"]==1)
      {
         $is_active="Active";
      }
+    
 
 
   
@@ -99,6 +108,8 @@ if ($result->num_rows > 0) {
      echo "<td class='password'>".$pass."</td>";
      echo "<td class='division_name'>".$division_name."</td>";
      echo "<td class='is_active'>".$is_active."</td>";
+     echo "<td class='is_active'>".$is_super_admin."</td>";
+
      
      echo "<td> 
      <i class='fa fa-edit' aria-hidden='true' style='cursor: pointer;' onclick='EditUser($id,this)'></i>
@@ -155,6 +166,13 @@ if ($divisionsResult->num_rows > 0) {
                     <?php endforeach; ?>
                 </select>
             </div>
+
+
+                        <div class="form-check form-check-success">
+                            <label > 
+                            Is Super Admin <input style="margin-left:20px;"  id="is_super_admin" type="checkbox" class="form-check-input" checked/>  
+                            </label>
+                        </div>
 
           
                       <div class="form-check form-check-success">

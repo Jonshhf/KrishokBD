@@ -387,7 +387,15 @@ function SaveUsers()
     else{
         is_active=0;
     }
-    var dataString='username='+username+'&is_active='+is_active+'&id='+UserId+"&password="+password+"&division_id="+division_id;
+    var is_super_admin=$('#is_super_admin').is(":checked");
+    if(is_super_admin)
+    {
+      is_super_admin=1;
+    }
+    else{
+      is_super_admin=0;
+    }
+    var dataString='username='+username+'&is_active='+is_active+'&id='+UserId+"&password="+password+"&division_id="+division_id+"&is_super_admin="+is_super_admin;
 
     $.ajax({
         type: "POST",
@@ -463,5 +471,49 @@ $.ajax({
      //alert(html);
   }
 });
+function GetNotice() {
+
+  $.ajax({
+    type: "POST",
+    url: "API/GetNotice.php",
+    data: "",
+    cache: false,
+    success: function(html) {
+      $('.content-wrapper').html(html);
+     let table = new DataTable('#noticeTbl');
+    }
+    });
+}
+
+function SaveNotice()  {
+
+    var text=$('#text').val();
+    var area='header';
+   
+   
+    var dataString='text='+text+'&area='+area;
+
+    $.ajax({
+        type: "POST",
+        url: "API/SaveNotice.php",
+        data: dataString,
+        cache: false,
+        success: function(html) {
+           alert(html);
+           GetNotice();
+           window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+
+  }
+
+
+
+
+
+
 
 }
+
+
+

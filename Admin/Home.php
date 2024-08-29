@@ -113,6 +113,7 @@
                   <li class="nav-item"> <a class="nav-link" onclick="GetProductList()" style="cursor:pointer;" >Product</a></li>
                   <li class="nav-item"> <a class="nav-link" onclick="GetProductType()" style="cursor:pointer;" >Product Type</a></li>
                   <li class="nav-item"> <a class="nav-link" onclick="GetUsers()" style="cursor:pointer;" >Users</a></li>
+                  <li class="nav-item"> <a class="nav-link" onclick="GetNotice()" style="cursor:pointer;" >Notice</a></li>
 
                   <!-- <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Sub Category</a></li> -->
                 </ul>
