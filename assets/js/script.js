@@ -146,3 +146,21 @@ function login()
         $("#Content").show(300);
     });
 }
+function login()
+{
+    $("#Content").hide(300);
+
+    $.get("API/login.php", function(data, status){
+        $("#Content").html(data);
+        $("#Content").show(300);
+    });
+}
+function registerUser()
+{
+    $("#Content").hide(300);
+
+    $.get("API/login.php", function(data, status){
+        $("#Content").html(data);
+        $("#Content").show(300);
+    });
+}

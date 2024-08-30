@@ -63,14 +63,8 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <?php if (isset($success_message)) { ?>
-            <div class="alert alert-success"><?php echo $success_message; ?></div>
-        <?php } elseif (isset($error_message)) { ?>
-            <div class="alert alert-danger"><?php echo $error_message; ?></div>
-        <?php } ?>
         
-        <form method="POST" action="reg_connection.php">
+        <form method="POST" action="API/reg_connection.php">
             <div class="mb-3">
                 <select class="form-select" name="user_type" required>
                     <option value="">ব্যবহারকারীর ধরণ নির্বাচন করুন</option>
@@ -84,15 +78,14 @@
             </div>
 
             <div class="mb-3">
-                <input type="tel" name="mobile" class="form-control" id="mobile" placeholder="মোবাইল নম্বর" pattern="[0-9]{10}" required>
-                <div id="mobileError" class="invalid-feedback">Invalid mobile number.</div>
+                <input type="tel" name="mobile" class="form-control" id="mobile" placeholder="মোবাইল নম্বর"  required>
             </div>
 
             <div class="mb-3">
                 <input type="password" name="password" class="form-control" placeholder="পাসওয়ার্ড" required>
             </div>
 
-            <button class="btn btn-success w-100" type="submit">নিবন্ধন করুন</button>
+            <button class="btn btn-success w-100" type="submit" onclick="registerUser()">নিবন্ধন করুন</button>
         </form>
     </div>
 
