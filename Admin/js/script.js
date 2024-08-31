@@ -471,6 +471,9 @@ $.ajax({
      //alert(html);
   }
 });
+
+}
+
 function GetNotice() {
 
   $.ajax({
@@ -507,13 +510,6 @@ function SaveNotice()  {
 
   }
 
-
-
-
-
-
-
-}
 
 
 

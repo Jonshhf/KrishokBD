@@ -16,6 +16,7 @@ if ($result->num_rows > 0) {
     $_SESSION["userid"] = $row['id'];
     $_SESSION["username"] = $row['username'];
     $_SESSION["division_id"] = $row['division_id'];
+    $_SESSION["is_super_admin"] = $row['is_super_admin'];
    echo 1;
 } else {
    echo 0;

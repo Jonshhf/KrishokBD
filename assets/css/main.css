@@ -654,6 +654,7 @@ p {
     border-radius: 5px;
     margin-right: 15px;
     font-size: 1.16rem;
+    width: 150px;
 }
 
 .dam-main-header .header-login-section .signup {
@@ -662,6 +663,7 @@ p {
     font-size: 1.1rem;
     border-radius: 5px;
     background: crimson;
+    width: 150px;
 }
 
 .dam-main-manu {

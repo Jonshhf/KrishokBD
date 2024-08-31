@@ -1,5 +1,5 @@
  var loader="<center>অনুগ্রহপূর্বক অপেক্ষা করুন . . . <br><img src='assets/images/loader2.gif' height='250px;' width='350px;' style='opacity:0.7;'> </center> ";
- var base_url = "KrisokBD_New/KrishokBD";
+ var base_url = "KrisokBD/KrishokBD";
  var PageContent = {};
  
  function navigate(page,data)

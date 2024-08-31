@@ -112,7 +112,9 @@
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" onclick="GetProductList()" style="cursor:pointer;" >Product</a></li>
                   <li class="nav-item"> <a class="nav-link" onclick="GetProductType()" style="cursor:pointer;" >Product Type</a></li>
+                  <?php if($_SESSION["is_super_admin"]==1){ ?>
                   <li class="nav-item"> <a class="nav-link" onclick="GetUsers()" style="cursor:pointer;" >Users</a></li>
+                  <?php } ?>
                   <li class="nav-item"> <a class="nav-link" onclick="GetNotice()" style="cursor:pointer;" >Notice</a></li>
 
                   <!-- <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Sub Category</a></li> -->
