@@ -1,5 +1,5 @@
  var loader="<center>অনুগ্রহপূর্বক অপেক্ষা করুন . . . <br><img src='assets/images/loader2.gif' height='250px;' width='350px;' style='opacity:0.7;'> </center> ";
- var base_url = "KrisokBD/KrishokBD";
+ var base_url = "KrisokBD_New/KrishokBD";
  var PageContent = {};
  
  function navigate(page,data)
@@ -131,12 +131,14 @@ function online_payment()
 function registration()
 {
     $("#Content").hide(300);
-
+    debugger;
     $.get("API/registration.php", function(data, status){
         $("#Content").html(data);
         $("#Content").show(300);
+        navigate('Registration',data);
     });
 }
+
 function login()
 {
     $("#Content").hide(300);
@@ -144,23 +146,55 @@ function login()
     $.get("API/login.php", function(data, status){
         $("#Content").html(data);
         $("#Content").show(300);
+        navigate('Login',data);
     });
 }
-function login()
-{
-    $("#Content").hide(300);
 
-    $.get("API/login.php", function(data, status){
-        $("#Content").html(data);
-        $("#Content").show(300);
-    });
-}
 function registerUser()
 {
-    $("#Content").hide(300);
+    var type = $("#type").val();
+    var name = $("#name").val();
+    var password = $("#password").val();
+    var mobile = $("#mobile").val();
 
-    $.get("API/login.php", function(data, status){
-        $("#Content").html(data);
-        $("#Content").show(300);
+    var dataString='user_type='+type+'&name='+name+'&password='+password+'&mobile='+mobile;
+
+    $.ajax({
+        type: "POST",
+        url: "API/reg_connection.php",
+        data: dataString,
+        cache: false,
+        success: function(html) {
+          alert("Registration Sucessful !");
+          login();
+          
+        }
+    });
+
+}
+
+function loginUser(){
+   
+    var password = $("#password").val();
+    var mobile = $("#mobile").val();
+
+    var dataString='password='+password+'&mobile='+mobile;
+   
+    $.ajax({
+        type: "POST",
+        url: "API/loginUser.php",
+        data: dataString,
+        cache: false,
+        success: function(html) { 
+            
+         if(html=="TestTest"){
+            alert("Login Sucessful !");
+            location.href ="/KrisokBD_New/KrishokBD";
+         }
+         else{
+            alert("Wrong Mobile No Or Password !");
+         }
+          
+        }
     });
 }

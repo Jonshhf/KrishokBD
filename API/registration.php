@@ -66,26 +66,27 @@
         
         <form method="POST" action="API/reg_connection.php">
             <div class="mb-3">
-                <select class="form-select" name="user_type" required>
-                    <option value="">ব্যবহারকারীর ধরণ নির্বাচন করুন</option>
+                <select class="form-select" name="user_type" id="type" required>
+                    <option hidden="">ব্যবহারকারীর ধরণ নির্বাচন করুন</option>
                     <option value="farmer">কৃষক</option>
                     <option value="businessman">ব্যবসায়ী</option>
+                    <option value="general">সাধারণ ব্যবহারকারী</option>
                 </select>
             </div>
 
             <div class="mb-3">
-                <input type="text" name="name" class="form-control" placeholder="নাম" required>
+                <input type="text" name="name" id="name" class="form-control" placeholder="নাম" required>
             </div>
 
             <div class="mb-3">
-                <input type="tel" name="mobile" class="form-control" id="mobile" placeholder="মোবাইল নম্বর"  required>
+                <input type="tel" name="mobile"  class="form-control" id="mobile" placeholder="মোবাইল নম্বর"  required>
             </div>
 
             <div class="mb-3">
-                <input type="password" name="password" class="form-control" placeholder="পাসওয়ার্ড" required>
+                <input type="password" id="password" class="form-control" placeholder="পাসওয়ার্ড" required>
             </div>
 
-            <button class="btn btn-success w-100" type="submit" onclick="registerUser()">নিবন্ধন করুন</button>
+            <button class="btn btn-success w-100" type="button" onclick="registerUser()">নিবন্ধন করুন</button>
         </form>
     </div>
 

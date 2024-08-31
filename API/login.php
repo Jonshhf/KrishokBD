@@ -105,7 +105,7 @@
                     <input type="password" id="password" required>
                     <label for="password">পাসওয়ার্ড *</label>
                 </div>
-                <button type="submit">লগইন</button>
+                <button type="button" onclick="loginUser()">লগইন</button>
             </form>
         </div>
     </div>
