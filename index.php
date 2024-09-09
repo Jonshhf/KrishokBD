@@ -67,7 +67,7 @@ if ($resultc->num_rows > 0) {
         chatbox.setAttribute("attribution", "biz_inbox");
     </script>
 
-    <!-- Your SDK code -->
+    <!-- Your SDK code 
     <script>
         window.fbAsyncInit = function() {
             FB.init({
@@ -492,7 +492,7 @@ echo "<span class='header-login-section'>
                     <h5 class="mb-3 mob-footer-title font-weight-bold">গুরুত্বপূর্ণ লিংক সমূহ</h5>
                     <ul class="dam-contact-info">
 
-                        <li><a href="assets/document/mv.pdf" target="_blank"><i class="far fa-dot-circle"></i> নীতিমালা</a></li>
+                        <li><a href="" data-toggle="modal" data-target="#exampleModal"><i class="far fa-dot-circle"></i> নীতিমালা</a></li>
                         <li><a href="#"><i class="far fa-dot-circle"></i> সচরাচর জিজ্ঞাস্য</a></li>
                     </ul>
                 </div>
@@ -550,6 +550,27 @@ echo "<span class='header-login-section'>
             </div>
         </div>
     </div>
+
+
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1">নীতিমালা</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      krisokbd.com 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script>

@@ -3,9 +3,9 @@
 // Connecto To Client DB .......
 
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "krisok_db";
+$username = "mkrokwsy_user";
+$password = "mksb1202011";
+$dbname = "mkrokwsy_krisok_db";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

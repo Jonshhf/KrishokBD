@@ -1,10 +1,10 @@
  var loader="<center>অনুগ্রহপূর্বক অপেক্ষা করুন . . . <br><img src='assets/images/loader2.gif' height='250px;' width='350px;' style='opacity:0.7;'> </center> ";
- var base_url = "KrisokBD_New/KrishokBD";
+ var base_url = "";
  var PageContent = {};
  
  function navigate(page,data)
  {
-        var url="/"+base_url+"/"+page;
+        var url=""+base_url+"/"+page;
         history.pushState({page:page},'',url);
         PageContent[page]=data;
  }
@@ -187,9 +187,9 @@ function loginUser(){
         cache: false,
         success: function(html) { 
             
-         if(html=="TestTest"){
+         if(html=="Test"){
             alert("Login Sucessful !");
-            location.href ="/KrisokBD_New/KrishokBD";
+            location.href ="/";
          }
          else{
             alert("Wrong Mobile No Or Password !");

@@ -158,7 +158,7 @@ $date = date('d/m/Y', time());
       
  <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog" style="max-width:1021px; !important">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title fs-5" id="exampleModalLabel"><?php echo $product_name." - ".$product_type_name; ?> এর আজকের বাজার দর  - <?php echo $date; ?></h4>

@@ -1,0 +1,7 @@
+[01-Sep-2024 13:48:37 UTC] PHP Warning:  include(../../connection.php): Failed to open stream: No such file or directory in /home/mkrokwsy/krisokbd.com/API/reg_connection.php on line 3
+[01-Sep-2024 13:48:37 UTC] PHP Warning:  include(): Failed opening '../../connection.php' for inclusion (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/mkrokwsy/krisokbd.com/API/reg_connection.php on line 3
+[01-Sep-2024 13:48:37 UTC] PHP Warning:  Undefined variable $conn in /home/mkrokwsy/krisokbd.com/API/reg_connection.php on line 14
+[01-Sep-2024 13:48:37 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/mkrokwsy/krisokbd.com/API/reg_connection.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/mkrokwsy/krisokbd.com/API/reg_connection.php on line 14
