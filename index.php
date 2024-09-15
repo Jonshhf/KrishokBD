@@ -49,7 +49,63 @@ if ($resultc->num_rows > 0) {
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/cards.css">
     <style>
+
+/* The Modal (background) */
+.modal0,.modal1 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content0,.modal-content1 {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.closed {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.closed:hover,
+.closed:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
     </style>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .chart-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            margin-bottom: 50px;
+        }
+        h2 {
+            text-align: center;
+        }
+    </style>
+
 </head>
 
 
@@ -289,13 +345,13 @@ echo "<span class='header-login-section'>
                             <h4 class="mt-2">আজকের বাজার দর</h4>
                         </div>
                     </div>
-                    <div class="col-2 col-responsive" onclick="GetTodaysMarketPrice('Weekly')">
+                    <div class="col-2 col-responsive" onclick="GetDivisionsWeekly()">
                         <div class="feature-card">
                             <img src="assets/images/cart/cart2.png" alt="Feature 2" class="card-img">
-                            <h4 class="mt-2">সপ্তাহের বাজার দর</h4>
+                            <h4 class="mt-2">তুলনামূলক তথ্য চিত্র </h4>
                         </div>
                     </div>
-                    <div class="col-2 col-responsive"  onclick="GetTodaysMarketPrice('Graph')">
+                    <div class="col-2 col-responsive"  onclick="GetGraph()">
                         <div class="feature-card">
                             <img src="assets/images/cart/cart3.png" alt="Feature 3" class="card-img">
                             <h4 class="mt-2">সর্বোচ্চ ও সর্বনিম্ন দরের আঞ্চলিক গ্রাফ</h4>
@@ -492,8 +548,9 @@ echo "<span class='header-login-section'>
                     <h5 class="mb-3 mob-footer-title font-weight-bold">গুরুত্বপূর্ণ লিংক সমূহ</h5>
                     <ul class="dam-contact-info">
 
-                        <li><a href="" data-toggle="modal" data-target="#exampleModal"><i class="far fa-dot-circle"></i> নীতিমালা</a></li>
-                        <li><a href="#"><i class="far fa-dot-circle"></i> সচরাচর জিজ্ঞাস্য</a></li>
+                        <li><a id="myBtn0"><i class="far fa-dot-circle"></i> নীতিমালা</a></li>
+                        <li><a id="myBtn1"><i class="far fa-dot-circle"></i> অভিলক্ষ (Mission)
+                        </a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 border-f-col text-center text-sm-left">
@@ -552,25 +609,50 @@ echo "<span class='header-login-section'>
     </div>
 
 
-    <!-- Modal -->
-<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel1">নীতিমালা</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      krisokbd.com 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
+<!-- The Modal -->
+<div id="myModal0" class="modal0">
+
+  <!-- Modal content -->
+  <div class="modal-content0">
+    <span class="closed0" style="float:right;">&times;</span>
+    <hr>
+    <h5><b>নীতিমালা<b></h5>
+    <hr>
+    <p style="font-weight:normal">krisokbd.com একদল স্বপ্নবাজ তরুণের সামাজিক উদ্যোগ। এই উদ্যোগকে হুবহু কপি বা তথ্য চুরি করা আইনত দণ্ডনীয় অপরাধ। 
+    আমাদের দেওয়া প্রতিদিনের তথ্য চুরি করে ব্যবসায়ীক উদ্দেশ্যে অন্য কোন প্লাটফর্মে ব্যবহৃত হলে সেটা আইনত দণ্ডনীয় অপরাধ বলেই গণ্য হবে। এই রকম কোন অভিযোগ পাওয়া গেলে নিয়ম অনুযায়ী প্রয়োজনীয় পদক্ষেপ গ্রহণ করতে কতৃপক্ষ দৃঢ়ভাবে বদ্ধপরিকর।</p>
   </div>
+
 </div>
+
+<!-- The Modal -->
+<div id="myModal1" class="modal1">
+
+  <!-- Modal content -->
+  <div class="modal-content1">
+    <span class="closed1" style="float:right;">&times;</span>
+    <hr>
+    <h5><b>অভিলক্ষ (Mission)
+    <b></h5>
+    <hr>
+    <p style="font-weight:normal">•	দেশের বিভিন্ন প্রান্তের দৈনিক/ চলমান বাজারদর সম্পর্কে স্বচ্ছ ধারনা রাখা ও কৃষিপণ্যের মূল্য সংযোজন কার্যক্রম অব্যাহত রাখা। <br>
+•	যে কোন কৃষি পণ্যের পাইকারী বাজারদর সম্পর্কে নাগরিকের তথ্য জানার অধিকার নিশ্চিত করা। <br>
+•	স্মার্ট ব্যবস্থাপনার মাধ্যমে মোবাইল ফোনের এক ক্লিকেই সকল কৃষি পণ্যের দৈনিক পাইকারি বাজার দর সম্পর্কে জানা।<br>
+•	কৃষিপণ্যের এলাকাভিত্তিক সর্বনিম্ন ও সর্বোচ্চ মূল্য একটি মাত্র গ্রাফের মাধ্যমে তথ্য প্রদান করা।<br>
+•	কৃষক, ব্যবসায়ী ও ভোক্তার আলাদা প্রফাইলিং এর মাধ্যমে একে অপরের মধ্যে পারস্পরিক বন্ধন তৈরি ও সরাসরি একে অপরের সাথে ব্যবসায়ী সম্পর্ক তৈরি করা।<br>
+•	মধ্যস্বত্ব ভোগীদের নৈরাজ্য থেকে কৃষক, ব্যবসায়ী ও ভোক্তাকে স্বস্তি প্রদান করা।<br>
+•	বাজার অবকাঠামো জোরদারকরণ এবং কৃষিপণ্যের সরবরাহ ব্যবস্থাপনায় সহায়তা প্রদানের মাধ্যমে দক্ষ বাজার ব্যবস্থা গড়ে তোলা।<br>
+•	উৎপাদক ও বিক্রেতার সাথে ভোক্তার সংযোগ স্থাপনে সহায়তা দান।<br>
+•	কৃষি ব্যবসা ও কৃষি ভিত্তিক শিল্প স্থাপনের মাধ্যমে কৃষি ও কৃষিজাত পণ্যের রপ্তানী বৃদ্ধিতে সহায়তা করা।<br>
+•	কৃষিপণ্যের মূল্য সংযোজন কার্যক্রম অব্যাহত রাখা।<br><br>
+<hr>
+দর্শন (Vision)
+<hr>
+<span style="font-weight:normal">উৎপাদক, বিক্রেতা ও ভোক্তা সহায়ক স্মার্ট কৃষি বিপণন ব্যবস্থা এবং কৃষি ব্যবসা উন্নয়নের মাধ্যমে ব্যক্তি ও জাতীয় অর্থনীতিতে অবদান রাখা।</span></p>
+  </div>
+
+</div>
+
+
 
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script>
@@ -612,6 +694,8 @@ echo "<span class='header-login-section'>
     <script src="assets/js/auth.js"></script>
     <script src="assets/js/register.js"></script>
     <script src="assets/js/common.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script>
         $('.dam-slide-item').removeClass('d-none')
         $('.event-slider').removeClass('d-none')
@@ -622,6 +706,47 @@ echo "<span class='header-login-section'>
             $('#des_modal').text($('#des' + id).text())
             $('#eventDetailsModal').modal('show')
         }
+
+
+$( document ).ready(function() {
+    
+    // Get the modal
+var modal0 = document.getElementById("myModal0");
+var btn0 = document.getElementById("myBtn0");
+
+var span0 = document.getElementsByClassName("closed0")[0];
+btn0.onclick = function() {
+  modal0.style.display = "block";
+}
+span0.onclick = function() {
+  modal0.style.display = "none";
+}
+window.onclick = function(event) {
+  if (event.target == modal0) {
+    modal0.style.display = "none";
+  }
+}
+
+// Get the modal
+var modal1 = document.getElementById("myModal1");
+var btn1 = document.getElementById("myBtn1");
+var span1 = document.getElementsByClassName("closed1")[0];
+btn1.onclick = function() {
+  modal1.style.display = "block";
+}
+span1.onclick = function() {
+  modal1.style.display = "none";
+}
+window.onclick = function(event) {
+  if (event.target == modal1) {
+    modal1.style.display = "none";
+  }
+}
+
+
+});
+
+
     </script>
 
 </body>

@@ -2,6 +2,19 @@
 
 include "../connection.php";
 
+$divisionId=$_POST["divisionId"];
+
+$sql = "SELECT * FROM divisions where id=$divisionId";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+
+    $division_name=$row["bn_name"];
+  
+  }
+}
+
 ?>
 <style>
         body {
@@ -96,7 +109,7 @@ include "../connection.php";
 <!-- Entry Button Section -->
 <section id="categories" class="py-5">
             <div class="container-fluid"style="max-width:1021px;!important ">
-                <h2 class="text-center section-title mb-4" id="TypeHeading"> আজকের বাজার দর </h2>
+                <h2 class="text-center section-title mb-4" id="TypeHeading"> তুলনামূলক তথ্য চিত্র - <?php echo $division_name; ?> বিভাগ</h2>
                 <div class="row justify-content-center">
                     
                 <?php
@@ -113,8 +126,8 @@ include "../connection.php";
                     $name=$row["name"];
                     $image_url="Admin/API/".$row["image_url"];
 
-                echo '<div class="col-3 col-responsive" onclick="GetTypes('.$product_id.')">
-                    <div class="feature-card">
+                echo '<div class="col-3 col-responsive" >
+                    <div class="feature-card" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="GetDistrictWisePriceWeekly('. $divisionId.','.$product_id.')">
                         <img src="'.$image_url.'" alt="Feature 1" class="card-img card-height">
                         <h4 class="mt-2"> '.$name.' </h4>
                     </div>
@@ -136,7 +149,24 @@ include "../connection.php";
         </section>
 
 
-
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="max-width:1021px; !important">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title fs-5" id="exampleModalLabel"><?php echo $division_name; ?> বিভাগ এর তুলনামূলক তথ্য চিত্র  </h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Loading...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+      
 
 
 

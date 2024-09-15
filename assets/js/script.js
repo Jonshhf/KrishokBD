@@ -1,5 +1,5 @@
  var loader="<center>অনুগ্রহপূর্বক অপেক্ষা করুন . . . <br><img src='assets/images/loader2.gif' height='250px;' width='350px;' style='opacity:0.7;'> </center> ";
- var base_url = "";
+ var base_url = "/KrisokBD/KrishokBD";
  var PageContent = {};
  
  function navigate(page,data)
@@ -61,6 +61,18 @@ function GetTodaysMarketPrice(type)
     
 }
 
+function GetGraph()
+{
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+     $("#Content").html(loader);
+    
+    $.get("API/GetGraph.php", function(data, status){
+        $("#Content").html(data);
+        $("#Content").show(300);
+        navigate('Graph',data);
+    });
+}
+
 function GetTypes(ProductId)
 {
    
@@ -103,6 +115,45 @@ function GetDivisions(ProductId,productTypeId)
     });
 }
 
+function GetDivisionsWeekly()
+{
+   
+     $("html, body").animate({ scrollTop: 0 }, "slow");
+     $("#Content").html(loader);
+
+    $.ajax({
+        type: "POST",
+        url: "API/GetDivisionsWeekly.php",
+        data: "",
+        cache: false,
+        success: function(html) {
+          $("#Content").html(html);
+          $("#Content").show(300);
+          navigate('DivisionsWeekly',html);
+        }
+    });
+}
+
+function GetProductsWeekly(divisionId)
+{
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    $("#Content").html(loader);
+
+   var dataString='divisionId='+divisionId;
+
+   $.ajax({
+       type: "POST",
+       url: "API/GetProductsWeekly.php",
+       data: dataString,
+       cache: false,
+       success: function(html) {
+         $("#Content").html(html);
+         $("#Content").show(300);
+         navigate('ProductsWeekly',html);
+       }
+   });
+}
+
 function GetDistrictWisePrice(divisionId,productId,productTypeId)
 {
 
@@ -111,6 +162,21 @@ function GetDistrictWisePrice(divisionId,productId,productTypeId)
     $.ajax({
         type: "POST",
         url: "API/GetDistrictWisePrice.php",
+        data: dataString,
+        cache: false,
+        success: function(html) {
+            $('.modal-body').html(html);
+        }
+    });
+}
+
+function GetDistrictWisePriceWeekly(divisionId,productId)
+{
+    var dataString='divisionId='+divisionId+"&productId="+productId;
+
+    $.ajax({
+        type: "POST",
+        url: "API/GetDistrictWisePriceWeekly.php",
         data: dataString,
         cache: false,
         success: function(html) {
