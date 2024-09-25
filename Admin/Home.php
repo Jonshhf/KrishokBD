@@ -132,6 +132,7 @@
               <div class="collapse" id="auth">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" onclick="GetPrice()" style="cursor:pointer;"> District Wise </a></li>
+                  <li class="nav-item"> <a class="nav-link" onclick="GetPriceSheet()" style="cursor:pointer;"> Price Sheet </a></li>
                 </ul>
               </div>
             </li>
