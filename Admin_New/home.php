@@ -53,8 +53,9 @@ $sql = "SELECT * FROM products";
 $result = $conn->query($sql);
 $total_purchase=$result->num_rows;
 
-
-$total_sales=0;
+$sql = "SELECT * FROM users_registration";
+$result = $conn->query($sql);
+$total_sales=$result->num_rows;
 
 ?>
 
@@ -335,6 +336,22 @@ $total_sales=0;
             </ul>
           </li>
 
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Price Entry
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#"  onclick="getcontent('price_entry')" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Price</p>
+                </a>
+              </li>
+           </ul>
           
             <li class="nav-item has-treeview" style="display:none;">
             <a href="#" class="nav-link">
@@ -393,7 +410,6 @@ $total_sales=0;
                   <p>Add Expense</p>
                 </a>
               </li>
-
            </ul>
 
 
@@ -525,7 +541,7 @@ $total_sales=0;
               <div class="inner">
                 <h3><?php echo $total_sales ?><sup style="font-size: 20px"></sup></h3>
 
-                <p>Total Sales</p>
+                <p>Total Users</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -887,8 +903,8 @@ function AddSelect2()
 // Get Content Start ..........................................................................
 
 var viewcontent="";
-
-function getcontent(viewname)
+var param = "";
+function getcontent(viewname,param="")
 {
 
 id=0;
@@ -897,13 +913,13 @@ viewcontent=viewname;
 
 $.ajax({
 type: "POST",
-url: "View/"+viewname+".php",
+url: "View/"+viewname+".php"+param,
 data: "",
 cache: false,
 success: function(html) {
 
  document.getElementById("content").innerHTML = html;
-
+ param="";
  var scripturl="Script/"+viewname+".js";
 
  $.getScript( scripturl, function( data, textStatus, jqxhr ) {
@@ -970,7 +986,7 @@ cache: false,
 success: function(html) {
 
  //alert(html);
- getcontent(viewcontent);
+ //getcontent(viewcontent);
  id=0;
  //document.getElementById("content").innerHTML = html;
 
