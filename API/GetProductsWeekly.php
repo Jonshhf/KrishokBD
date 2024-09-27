@@ -124,7 +124,12 @@ if ($result->num_rows > 0) {
 
                     $product_id=$row["id"];
                     $name=$row["name"];
-                    $image_url="Admin/API/".$row["image_url"];
+                    //$image_url="Admin/API/".$row["image_url"];
+                    if (strpos($row["image_url"], 'uploads') === false) {
+                        $row["image_url"] = 'uploads/' . $row["image_url"];
+                    }
+                
+                      $image_url="Admin/imageUpload/".$row["image_url"];
 
                 echo '<div class="col-3 col-responsive" >
                     <div class="feature-card" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="GetDistrictWisePriceWeekly('. $divisionId.','.$product_id.')">

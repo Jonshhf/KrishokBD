@@ -135,7 +135,12 @@ $date = date('d/m/Y', time());
                         <button class="btn district-btn">'.$name.'</button>
                     </div>';  */
 
-                    $image_url="Admin/API/".$row["image_url"];
+                    //$image_url="Admin/API/".$row["image_url"];
+                    if (strpos($row["image_url"], 'uploads') === false) {
+                        $row["image_url"] = 'uploads/' . $row["image_url"];
+                    }
+                
+                      $image_url="Admin/imageUpload/".$row["image_url"];
 
                 echo '<div class="col-2 col-responsive"  onclick="GetDivisions('. $product_id.','.$product_type_id.')">
                     <div class="feature-card">

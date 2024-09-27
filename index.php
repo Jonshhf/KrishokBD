@@ -104,6 +104,47 @@ if ($resultc->num_rows > 0) {
         h2 {
             text-align: center;
         }
+
+.cards-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    width: 100%;
+    max-width: none;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+    font-size: 30px;
+    color: #009688;
+}
+
+.text {
+    text-align: left;
+}
+
+/* Media Query for larger screens */
+@media (min-width: 768px) {
+    .cards-wrapper {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .card {
+        width: 300px;
+        max-width: none;
+    }
+}
+
     </style>
 
 </head>
@@ -169,7 +210,7 @@ if ($resultc->num_rows > 0) {
                                         <i style="display:none;" id="closeSearch" class="fas fa-times"></i>
                                     </div>
                                     <div class="mob-header-cart">
-                                        <a href="#" onclick="OpenCart()" title="Cart">
+                                  0      <a href="#" onclick="OpenCart()" title="Cart">
                                         <i class="fas fa-shopping-cart"></i>
                                         <sup class="item_amount_cart d-none">0</sup>
                                         <!-- <small>কার্ট</small> -->
@@ -373,8 +414,51 @@ echo "<span class='header-login-section'>
             </div>
         </section>
         <!-- Event Section Start -->
+
+
+        <div class="container">
+    <h2>তথ্যচিত্র</h2>
+    <hr>
+    <br>
+    <div class="cards-wrapper">
+        <div class="card">
+            <div class="icon">&#128221;</div>
+            <div class="text">
+                <h3>150 জন</h3>
+                <p>আজকের সেবা গ্রহণীতা</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="icon">&#128205;</div>
+            <div class="text">
+                <h3>250 জন</h3>
+                <p>মোট সেবা গ্রহণীতা</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="icon">&#128196;</div>
+            <div class="text">
+                <h3>569 জন</h3>
+                <p>মোট রেজিস্ট্রার</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="icon">&#128295;</div>
+            <div class="text">
+                <h3>5829 বার</h3>
+                <p>মোট পেজ ভিজিট</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<hr>
+<br>
         <!--Event Slider -->
-        <section class="main-event-slider dam-home-slider dam-home-event-slider">
+
+
+        <section class="main-event-slider dam-home-slider dam-home-event-slider" style="display:none;">
             <div class="container">
                 <div class="row  ">
                     <div class="col">
@@ -387,10 +471,9 @@ echo "<span class='header-login-section'>
                                 <i class="fas fa-angle-right fa-2x"></i>
                             </li>
                         </ul>
-                        <div class="event-slider d-none">
-                            <a href="javascript:void(0)" style="display: none;">
+                        <div class="event-slider">
+                            <a href="javascript:void(0)" >
                                 <div class="event-inner">
-                                    <img src="assets/images/event/1701170246Q2Wqf.png" class="img-fluid" alt="পোড়াদহ মেলা" onclick="eventUrl('পোড়াদহ_মেলা_SXAwZ2ZjSkdrTkNMNzZDRWpMZVduZz09')">
                                     <div class="card-body">
                                         <h4 class="dam-slide-item" onclick="eventUrl('পোড়াদহ_মেলা_SXAwZ2ZjSkdrTkNMNzZDRWpMZVduZz09')"> পোড়াদহ মেলা </h4>
                                         <small class="event-category d-block"><span style="color: #888">বিভাগ-</span> মিষ্টি</small>
@@ -404,7 +487,7 @@ echo "<span class='header-login-section'>
                                     </div>
                                 </div>
                             </a>
-                            <a href="javascript:void(0)" style="display: none;">
+                            <a href="javascript:void(0)" >
                                 <div class="event-inner">
                                     <img src="assets/images/event/1701180296SWxJW.jpg" class="img-fluid" alt="ফলের মেলা" onclick="eventUrl('ফলের_মেলা_ZG4waTFKdVd4K2VzdG1iNjRGSXpadz09')">
                                     <div class="card-body">
@@ -420,7 +503,7 @@ echo "<span class='header-login-section'>
                                     </div>
                                 </div>
                             </a>
-                            <a href="javascript:void(0)" style="display: none;">
+                            <a href="javascript:void(0)" >
                                 <div class="event-inner">
                                     <img src="assets/images/event/1701251686fJSRp.jpg" class="img-fluid" alt="মাছের মেলা" onclick="eventUrl('মাছের_মেলা_QXJZV2FFUnRyK3U0aExrcUJMVkx4QT09')">
                                     <div class="card-body">
@@ -436,7 +519,7 @@ echo "<span class='header-login-section'>
                                     </div>
                                 </div>
                             </a>
-                            <a href="javascript:void(0)" style="display: none;">
+                            <a href="javascript:void(0)" >
                                 <div class="event-inner">
                                     <img src="assets/images/event/1701347262cinoa.jpg" class="img-fluid" alt="অর্গানিক মেলা" onclick="eventUrl('অর্গানিক_মেলা_S09ic0wwaUN0ZDZxYng4YlFZRXM1UT09')">
                                     <div class="card-body">

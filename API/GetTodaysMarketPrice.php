@@ -111,7 +111,13 @@ include "../connection.php";
 
                     $product_id=$row["id"];
                     $name=$row["name"];
-                    $image_url="Admin/API/".$row["image_url"];
+                    //$image_url="Admin/API/".$row["image_url"];
+
+                    if (strpos($row["image_url"], 'uploads') === false) {
+                        $row["image_url"] = 'uploads/' . $row["image_url"];
+                    }
+                
+                      $image_url="Admin/imageUpload/".$row["image_url"];
 
                 echo '<div class="col-3 col-responsive" onclick="GetTypes('.$product_id.')">
                     <div class="feature-card">
