@@ -250,7 +250,7 @@ if ($resultc->num_rows > 0) {
                                         <i style="display:none;" id="closeSearch" class="fas fa-times"></i>
                                     </div>
                                     <div class="mob-header-cart">
-                                  0      <a href="#" onclick="OpenCart()" title="Cart">
+                                        <a href="#" onclick="OpenCart()" title="Cart">
                                         <i class="fas fa-shopping-cart"></i>
                                         <sup class="item_amount_cart d-none">0</sup>
                                         <!-- <small>কার্ট</small> -->
