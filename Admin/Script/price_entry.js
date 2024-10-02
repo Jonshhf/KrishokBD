@@ -1,20 +1,21 @@
-function updatePrice(id,product_id,product_type_id,division_id,district_id,date,e)
+function updatePrice(pid,product_id,product_type_id,division_id,district_id,date,e)
 {
    var newPrice = e.innerText;
 
-   if (id == 0) {
-      var sql = `INSERT INTO district_wise_price (product_id, product_type_id, division_id, district_id, date, price) 
-           VALUES ('${product_id}', '${product_type_id}', '${division_id}', '${district_id}', '${date}', '${newPrice}');`;
-   } else {
-    var sql = `UPDATE district_wise_price 
-           SET price = '${newPrice}' 
-           WHERE id = '${id}' 
-           AND product_id = '${product_id}' 
+   var sql = `delete from district_wise_price  
+           WHERE product_id = '${product_id}' 
            AND product_type_id = '${product_type_id}' 
            AND division_id = '${division_id}' 
            AND district_id = '${district_id}' 
            AND date = '${date}';`;
-   }
+
+   console.log(sql);
+
+   saveWithoutMessage(sql);
+
+   var sql = `INSERT INTO district_wise_price (product_id, product_type_id, division_id, district_id, date, price) 
+           VALUES ('${product_id}', '${product_type_id}', '${division_id}', '${district_id}', '${date}', '${newPrice}');`;
+   
    console.log(sql);
    saveWithoutMessage(sql);
 }

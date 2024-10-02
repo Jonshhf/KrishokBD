@@ -264,3 +264,36 @@ function loginUser(){
         }
     });
 }
+
+function get_profile()
+{
+    $("#Content").hide(300);
+    debugger;
+    $.get("API/profile.php", function(data, status){
+        $("#Content").html(data);
+        $("#Content").show(300);
+        navigate('Profile',data);
+    });
+}
+
+function get_post_view()
+{
+    $("#Content").hide(300);
+    debugger;
+    $.get("API/post.php", function(data, status){
+        $("#Content").html(data);
+        $("#Content").show(300);
+        navigate('Post',data);
+    });
+}
+
+function get_profile_list()
+{
+    $("#Content").hide(300);
+    debugger;
+    $.get("API/user_proflie_list.php", function(data, status){
+        $("#Content").html(data);
+        $("#Content").show(300);
+        navigate('ProfileList',data);
+    });
+}

@@ -16,6 +16,44 @@ if ($resultc->num_rows > 0) {
 
 }
 
+$sqlc = "SELECT count(*) as Total_user FROM users_registration";
+$resultc = $conn->query($sqlc);
+$Total_user=0;
+if ($resultc->num_rows > 0) {
+ 
+  while($row = $resultc->fetch_assoc()) {
+
+    $Total_user=$row["Total_user"];
+  }    
+
+}
+
+$sqlc = "SELECT count(*) as Total_visitor FROM website_visitor";
+$resultc = $conn->query($sqlc);
+$Total_visitor=0;
+if ($resultc->num_rows > 0) {
+ 
+  while($row = $resultc->fetch_assoc()) {
+
+    $Total_visitor=$row["Total_visitor"];
+  }    
+
+}
+
+$sqlc = "SELECT count(*) as Total_visitor 
+FROM website_visitor
+WHERE LEFT(dates, 10) = CURDATE() ";
+$resultc = $conn->query($sqlc);
+$Today_visitor=0;
+if ($resultc->num_rows > 0) {
+ 
+  while($row = $resultc->fetch_assoc()) {
+
+    $Today_visitor=$row["Total_visitor"];
+  }    
+
+}
+
 
 ?>
 
@@ -147,6 +185,8 @@ if ($resultc->num_rows > 0) {
 
     </style>
 
+    
+
 </head>
 
 
@@ -226,16 +266,16 @@ if ($resultc->num_rows > 0) {
                                     <li class="nav-item active">
                                         <a class="nav-link active" href="index.php" data-hover="হোম">হোম</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#" data-hover="নোটিশ ">নোটিশ </a>
-                                    </li>
+                                    
                                     <li class="nav-item">
                                         <a class="nav-link" onclick="online_payment()" data-hover="নোটিশ ">অনলাইন পেমেন্ট </a>
                                     </li>
                                     </li>
+                                    <?php if(isset($_SESSION["user_id"])) { ?>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#" data-hover="আমার প্রোফাইল">আমার প্রোফাইল</a>
+                                        <a class="nav-link" onclick="get_profile()" data-hover="আমার প্রোফাইল">আমার প্রোফাইল</a>
                                     </li>
+                                    <?php } ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#" data-hover="আবহাওয়া রিপোর্ট">আবহাওয়া রিপোর্ট</a>
                                     </li>
@@ -398,13 +438,13 @@ echo "<span class='header-login-section'>
                             <h4 class="mt-2">সর্বোচ্চ ও সর্বনিম্ন দরের আঞ্চলিক গ্রাফ</h4>
                         </div>
                     </div>
-                    <div class="col-2 col-responsive" >
+                    <div class="col-2 col-responsive" onclick="get_profile_list()">
                         <div class="feature-card">
                             <img src="assets/images/cart/cart4.png" alt="Feature 4" class="card-img">
-                            <h4 class="mt-2">কৃষক ও ব্যবসায়ী প্রফিট লিস্ট</h4>
+                            <h4 class="mt-2">কৃষক ও ব্যবসায়ী প্রোফাইল লিস্ট </h4>
                         </div>
                     </div>
-                    <div class="col-2 col-responsive"  onclick="GetTodaysMarketPrice()">
+                    <div class="col-2 col-responsive"  onclick="get_post_view()">
                         <div class="feature-card">
                             <img src="assets/images/cart/cart5.png" alt="Feature 5" class="card-img">
                             <h4 class="mt-2">ক্রয় বিক্রয়</h4>
@@ -424,28 +464,28 @@ echo "<span class='header-login-section'>
         <div class="card">
             <div class="icon">&#128221;</div>
             <div class="text">
-                <h3>150 জন</h3>
+                <h3><?php echo $Today_visitor; ?> জন</h3>
                 <p>আজকের সেবা গ্রহণীতা</p>
             </div>
         </div>
         <div class="card">
             <div class="icon">&#128205;</div>
             <div class="text">
-                <h3>250 জন</h3>
+                <h3><?php echo $Total_visitor; ?> জন</h3>
                 <p>মোট সেবা গ্রহণীতা</p>
             </div>
         </div>
         <div class="card">
             <div class="icon">&#128196;</div>
             <div class="text">
-                <h3>569 জন</h3>
+                <h3><?php echo $Total_user; ?> জন</h3>
                 <p>মোট রেজিস্ট্রার</p>
             </div>
         </div>
         <div class="card">
             <div class="icon">&#128295;</div>
             <div class="text">
-                <h3>5829 বার</h3>
+                <h3><?php echo $Total_visitor; ?> বার</h3>
                 <p>মোট পেজ ভিজিট</p>
             </div>
         </div>
@@ -738,7 +778,80 @@ echo "<span class='header-login-section'>
 
 
     <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
+
+$( document ).ready(function() {
+
+    getLocation();
+
+var latitude="";
+var longitude="";
+
+ function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    save_without_position();
+  }
+}
+
+function showPosition(position) {
+
+var siteit=0;
+var siteid=0;
+
+  latitude=position.coords.latitude;
+  longitude=position.coords.longitude;
+
+ var dataString="latitude="+latitude+"&longitude="+longitude+'&siteit=' + siteit+'&siteid='+siteid;
+
+$.ajax({
+type: "POST",
+url: "API/save_visitor_info.php",
+data: dataString,
+cache: false,
+success: function(html) {
+
+
+}
+});
+
+
+
+}
+
+
+function save_without_position() {
+
+    debugger;
+
+var siteit=0;
+var siteid=0;
+
+latitude="";
+longitude="";
+
+var dataString="latitude="+latitude+"&longitude="+longitude+'&siteit=' + siteit+'&siteid='+siteid;
+
+$.ajax({
+type: "POST",
+url: "API/save_visitor_info.php",
+data: dataString,
+cache: false,
+success: function(html) {
+
+  //document.getElementById("visitor_info").innerHTML = "Total Visitor : "+html;
+
+}
+});
+
+
+
+}
+
+});
+
         function showPw() {
             var input = document.getElementById("InputPassword");
             var showEye = document.getElementById("Show");
@@ -756,7 +869,6 @@ echo "<span class='header-login-section'>
     </script>
     <!-- footer section end-->
     <script src="assets/js/script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/59109e2a4f.js" crossorigin="anonymous"></script>
@@ -828,6 +940,7 @@ window.onclick = function(event) {
 
 
 });
+
 
 
     </script>
