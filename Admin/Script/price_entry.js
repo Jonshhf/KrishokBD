@@ -1,4 +1,4 @@
-function updatePrice(pid,product_id,product_type_id,division_id,district_id,date,e)
+async function updatePrice(pid,product_id,product_type_id,division_id,district_id,date,e) 
 {
    var newPrice = e.innerText;
 
@@ -11,13 +11,13 @@ function updatePrice(pid,product_id,product_type_id,division_id,district_id,date
 
    console.log(sql);
 
-   saveWithoutMessage(sql);
-
+   await saveWithoutMessage(sql);
+   
    var sql = `INSERT INTO district_wise_price (product_id, product_type_id, division_id, district_id, date, price) 
            VALUES ('${product_id}', '${product_type_id}', '${division_id}', '${district_id}', '${date}', '${newPrice}');`;
    
    console.log(sql);
-   saveWithoutMessage(sql);
+   await saveWithoutMessage(sql);
 }
 
 

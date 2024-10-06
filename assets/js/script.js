@@ -297,3 +297,43 @@ function get_profile_list()
         navigate('ProfileList',data);
     });
 }
+
+function UpdateProfile(id)
+{
+    var name = $('#username').text();
+    name = name.trim();
+    var mobile = $('#usermobile').text();
+    name=mobile.trim();
+    
+    var dataString='name='+name+'&mobile='+mobile+'&id='+id;
+   
+    $.ajax({
+        type: "POST",
+        url: "API/UpdateProfile.php",
+        data: dataString,
+        cache: false,
+        success: function(html) { 
+            
+         alert('Profile Successfully Updated!');
+          
+        }
+    });
+
+}
+
+function AddInterest(post_id)
+{
+    var dataString='post_id='+post_id;
+
+    $.ajax({
+        type: "POST",
+        url: "API/AddInterest.php",
+        data: dataString,
+        cache: false,
+        success: function(html) { 
+            
+         alert('Thanks for your Interest, Admin will contact with you soon!');
+          
+        }
+    });
+}

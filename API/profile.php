@@ -11,6 +11,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
+    $id=$row["id"];
     $name=$row["name"];
     $mobile=$row["mobile"];
     $user_type=$row["user_type"];
@@ -20,11 +21,12 @@ if ($result->num_rows > 0) {
 
 ?>
 <style>
-    .main-body {
+.main-body {
     padding: 15px;
 }
+
 .card {
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
 }
 
 .card {
@@ -35,7 +37,7 @@ if ($result->num_rows > 0) {
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 0 solid rgba(0,0,0,.125);
+    border: 0 solid rgba(0, 0, 0, .125);
     border-radius: .25rem;
 }
 
@@ -50,60 +52,67 @@ if ($result->num_rows > 0) {
     margin-left: -8px;
 }
 
-.gutters-sm>.col, .gutters-sm>[class*=col-] {
+.gutters-sm>.col,
+.gutters-sm>[class*=col-] {
     padding-right: 8px;
     padding-left: 8px;
 }
-.mb-3, .my-3 {
-    margin-bottom: 1rem!important;
+
+.mb-3,
+.my-3 {
+    margin-bottom: 1rem !important;
 }
 
 .bg-gray-300 {
     background-color: #e2e8f0;
 }
+
 .h-100 {
-    height: 100%!important;
+    height: 100% !important;
 }
+
 .shadow-none {
-    box-shadow: none!important;
+    box-shadow: none !important;
 }
 </style>
 
 <div class="container">
     <div class="main-body">
-    
-          <!-- Breadcrumb -->
-          <nav aria-label="breadcrumb" class="main-breadcrumb">
+
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+                <li class="breadcrumb-item active" aria-current="page">User Profile</li>
             </ol>
-          </nav>
-          <!-- /Breadcrumb -->
-    
-          <div class="row" >
+        </nav>
+        <!-- /Breadcrumb -->
 
-          <div class="col-sm-6">
+        <div class="row">
 
-          <div class="row gutters-sm">
-            <div class="col-md-4 mb-3">
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
-                    <div class="mt-3">
-                      <h4><?php echo $name; ?></h4>
-                      <p class="text-secondary mb-1"><?php echo $mobile; ?></p>
-                      <p class="text-muted font-size-sm"><?php echo strtoupper($user_type); ?></p>
-                      <button class="btn btn-primary">Follow</button>
-                      <button class="btn btn-outline-primary">Message</button>
+            <div class="col-sm-6">
+
+                <div class="row gutters-sm">
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex flex-column align-items-center text-center">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
+                                        class="rounded-circle" width="150">
+                                    <div class="mt-3">
+                                        <h4><?php echo $name; ?></h4>
+                                        <p class="text-secondary mb-1"><?php echo $mobile; ?></p>
+                                        <p class="text-muted font-size-sm" ><?php echo strtoupper($user_type); ?></p>
+                                        <br>
+                                        <button class="btn btn-primary">Follow</button>
+                                        <button class="btn btn-outline-primary">Message</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                  </div>
-                </div>
-              </div>
 
-</div>
-            
-            <!--  <div class="card mt-3" >
+                    <!--  <div class="card mt-3" >
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Website</h6>
@@ -129,51 +138,51 @@ if ($result->num_rows > 0) {
               </div>
             </div>-->
 
-            <div class="col-sm-6" style="margin-left:50px;">
+                    <div class="col-sm-6" style="margin-left:50px;">
 
-            <div class="col-md-12">
-              <div class="card mb-12">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <h6 class="mb-0">Full Name</h6>
-                    </div>
-                    <div class="col-sm-7 text-secondary">
-                    <?php echo $name; ?>
-                    </div>
-                  </div>
-                  <hr>
-                 
-                  
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <h6 class="mb-0">Mobile</h6>
-                    </div>
-                    <div class="col-sm-7 text-secondary">
-                    <?php echo $mobile; ?>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <h6 class="mb-0">User Type</h6>
-                    </div>
-                    <div class="col-sm-7 text-secondary">
-                    <?php echo strtoupper($user_type); ?>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <a class="btn btn-info ">Update</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                        <div class="col-md-12">
+                            <div class="card mb-12">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <h6 class="mb-0">Full Name</h6>
+                                        </div>
+                                        <div class="col-sm-10 text-secondary" id="username" contentEditable>
+                                            <?php echo $name; ?>
+                                        </div>
+                                    </div>
+                                    <hr>
 
-</div>
 
-           <!--   <div class="row gutters-sm">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <h6 class="mb-0">Mobile</h6>
+                                        </div>
+                                        <div class="col-sm-10 text-secondary" id="usermobile" contentEditable>
+                                            <?php echo $mobile; ?>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <h6 class="mb-0">User Type</h6>
+                                        </div>
+                                        <div class="col-sm-10 text-secondary" >
+                                            <?php echo strtoupper($user_type); ?>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-info " onclick="UpdateProfile(<?php echo $id; ?>)">Update</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!--   <div class="row gutters-sm">
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
                     <div class="card-body">
@@ -232,8 +241,8 @@ if ($result->num_rows > 0) {
 -->
 
 
-            </div>
-          </div>
+                    </div>
+                </div>
 
+            </div>
         </div>
-    </div>

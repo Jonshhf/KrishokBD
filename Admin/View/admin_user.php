@@ -48,10 +48,13 @@ $userid=9;
                     <th style='text-align:center;'>#</th>
                     <th>Division</th>
                     <th>User Name</th>
+                    <?php if($_SESSION["is_super_admin"]==1) { ?>
                     <th>Password</th>
                     <th>Is Super Admin</th>
                     <th>Is Active</th>
                     <th style='text-align:center;'>Action</th>
+                    <?php } ?>
+
                   </tr>
                   </thead>
                   <tbody>
@@ -78,16 +81,19 @@ if ($result->num_rows > 0) {
      echo "<td style='text-align:center;'>".$slno."</td>";
      echo "<td class='DivisionName'>".$division_name."</td>";
      echo "<td class='UserName'>".$name."</td>";
+     if($_SESSION["is_super_admin"]==1) { 
      echo "<td class='Password'>".$password."</td>";
      echo "<td><input type='checkbox' onchange='update_superadmin($id,this)'  $is_super_admin></td>";
      echo "<td><input type='checkbox' onchange='update_active($id,this)'  $is_active></td>";
-
+     
      echo "<td class='text-center py-0 align-middle' style='text-align:center;'>
                       <div class='btn-group btn-group-sm'>
                         <a onclick='updatedata($id,this)' class='btn btn-info'><i class='fas fa-edit'></i></a>
                         <a onclick=deletedata($id,this,'users','id') class='btn btn-danger'><i class='fas fa-trash'></i></a>
                       </div>
                     </td>";
+     }
+     
      echo "</tr>";
       
 

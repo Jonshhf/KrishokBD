@@ -80,20 +80,43 @@
             $.get('API/get_posts.php', function(data) {
                 $('#postList').html('');
                 data.forEach(function(post) {
+                    if(post.image){
                     $('#postList').append(`
                         <div class="col-md-6 mb-3">
                             <div class="card">
-                                <img src="${post.image}" class="card-img-top" alt="Post Image">
+                                <img src="${post.image}" class="card-img-top" height="300px;" alt="Post Image">
                                 <div class="card-body">
                                     <h5 class="card-title">${post.author} (${post.type})</h5>
                                     <p class="card-text">${post.status}</p>
+                                    <br>
+                                    <small class="text-muted">${post.interested} People Interested</small>
+                                    <br>
                                     <small class="text-muted">${post.date}</small>
                                     <br>
-                                    <button class="btn btn-success mt-2">Interested</button>
+                                    <button class="btn btn-success mt-2" onclick="AddInterest(${post.id})">Interested</button>
                                 </div>
                             </div>
                         </div>
                     `);
+                    }
+                    else{
+                        $('#postList').append(`
+                        <div class="col-md-6 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">${post.author} (${post.type})</h5>
+                                    <p class="card-text">${post.status}</p>
+                                    <br>
+                                    <small class="text-muted">${post.interested} People Interested</small>
+                                    <br>
+                                    <small class="text-muted">${post.date}</small>
+                                    <br>
+                                    <button class="btn btn-success mt-2" onclick="AddInterest(${post.id})">Interested</button>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                    }
                 });
             }, 'json');
         }
